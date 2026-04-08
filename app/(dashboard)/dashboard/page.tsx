@@ -1,4 +1,4 @@
-// app/(dashboard)/page.tsx
+// app/(dashboard)/dashboard/page.tsx
 import { auth } from "@/lib/auth";
 import { KPICard } from "@/components/dashboard/KPICard";
 import { DollarSign, ShoppingBag, CreditCard, TrendingUp } from "lucide-react";
@@ -17,7 +17,7 @@ export default async function DashboardOverview() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <KPICard 
           title="Total Revenue" 
-          value="$45,231.89" 
+          value="৳45,231.89" 
           trend="+20.1%" 
           trendDirection="up" 
           icon={DollarSign} 
@@ -31,14 +31,14 @@ export default async function DashboardOverview() {
         />
         <KPICard 
           title="Avg. Order Value" 
-          value="$127.05" 
+          value="৳127.05" 
           trend="-2.4%" 
           trendDirection="down" 
           icon={CreditCard} 
         />
         <KPICard 
           title="Gross Profit" 
-          value="$18,450.00" 
+          value="৳18,450.00" 
           trend="+15.3%" 
           trendDirection="up" 
           icon={TrendingUp} 

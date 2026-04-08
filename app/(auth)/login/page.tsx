@@ -5,7 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, Suspense } from "react";
 import Link from "next/link";
-import { Loader2 } from "lucide-react";
+import { Loader2, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 
 function LoginForm() {
@@ -13,6 +13,7 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   // Show a success message if they just came from the registration page
   const isRegistered = searchParams.get("registered") === "true";
@@ -39,7 +40,7 @@ function LoginForm() {
     } else {
       // Success! Push them to the dashboard shell.
       toast.success("Logged in successfully!");
-      router.push("/");
+      router.push("/dashboard");
     }
   }
 
@@ -69,9 +70,21 @@ function LoginForm() {
             <input name="email" type="email" required className="w-full p-2.5 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all" />
           </div>
 
-          <div>
+          <div className="relative">
             <label className="block text-sm font-medium text-zinc-400 mb-1">Password</label>
-            <input name="password" type="password" required className="w-full p-2.5 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all" />
+            <input 
+              name="password" 
+              type={showPassword ? "text" : "password"} 
+              required 
+              className="w-full p-2.5 pr-10 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all" 
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-8 text-zinc-500 hover:text-zinc-300 transition-colors"
+            >
+              {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+            </button>
           </div>
         </div>
         
