@@ -16,7 +16,7 @@ import {
 import { cn } from '@/lib/utils'; // standard shadcn utility
 
 const routes = [
-  { name: 'Overview', path: '/', icon: LayoutDashboard },
+  { name: 'Overview', path: '/dashboard', icon: LayoutDashboard },
   { name: 'Sales', path: '/sales', icon: ShoppingCart },
   { name: 'Inventory', path: '/inventory', icon: Package },
   { name: 'Customers', path: '/customers', icon: Users },
