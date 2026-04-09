@@ -38,9 +38,7 @@ export default function LandingPage() {
       <section className="relative z-10 pt-20 pb-32">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+           
           >
             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 backdrop-blur-md text-xs font-medium text-zinc-300 mb-6">
               <Sparkles className="h-3 w-3 text-indigo-400" />
