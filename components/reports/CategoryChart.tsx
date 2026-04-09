@@ -51,10 +51,13 @@ export function CategoryChart({ data }: CategoryChartProps) {
               borderRadius: '8px',
               color: '#fafafa',
             }}
-            formatter={(value: number) => [
-              `৳${value.toLocaleString()} (${((value / total) * 100).toFixed(1)}%)`,
-              'Sales',
-            ]}
+            formatter={(value) => {
+              const numValue = Number(value);
+              return [
+                `৳${numValue.toLocaleString()} (${((numValue / total) * 100).toFixed(1)}%)`,
+                'Sales',
+              ];
+            }}
           />
           <Legend
             formatter={(value) => <span className="text-zinc-400 text-xs">{value}</span>}

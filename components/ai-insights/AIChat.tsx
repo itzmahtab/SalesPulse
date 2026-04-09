@@ -142,7 +142,7 @@ export default function AIChat() {
                         {insight.type === "text" && <AlertCircle className="h-4 w-4 text-rose-500" />}
                         <span className="text-xs font-medium text-zinc-400">{insight.title}</span>
                       </div>
-                      {insight.data && (
+                      {insight.data !== null && insight.data !== undefined && (
                         <div className="text-xs text-zinc-500">
                           {insight.type === "stat" && (
                             <div className="grid grid-cols-3 gap-2">
@@ -154,7 +154,7 @@ export default function AIChat() {
                                       ? `৳${val.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
                                       : typeof val === "number"
                                       ? `${val.toFixed(1)}%`
-                                      : val}
+                                      : String(val)}
                                   </div>
                                 </div>
                               ))}
