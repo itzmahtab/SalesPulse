@@ -22,7 +22,8 @@ interface RevenueChartProps {
 }
 
 export function RevenueChart({ data }: RevenueChartProps) {
-  const formatDate = (date: string) => {
+  const formatDate = (date: string | React.ReactNode) => {
+    if (typeof date !== 'string') return String(date);
     const d = new Date(date);
     return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
@@ -65,10 +66,13 @@ export function RevenueChart({ data }: RevenueChartProps) {
               color: '#fafafa',
             }}
             labelFormatter={formatDate}
-            formatter={(value: number, name: string) => [
-              `৳${value.toLocaleString()}`,
-              name === 'revenue' ? 'Revenue' : 'Profit',
-            ]}
+            formatter={(value, name) => {
+              const numValue = Number(value);
+              return [
+                `৳${numValue.toLocaleString()}`,
+                name === 'revenue' ? 'Revenue' : 'Profit',
+              ];
+            }}
           />
           <Area
             type="monotone"

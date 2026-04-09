@@ -56,9 +56,10 @@ export function TopProductsChart({ data }: TopProductsChartProps) {
               borderRadius: '8px',
               color: '#fafafa',
             }}
-            formatter={(value: number, name: string) => {
-              if (name === 'revenue') return [`৳${value.toLocaleString()}`, 'Revenue'];
-              return [value, 'Quantity'];
+            formatter={(value, name) => {
+              const numValue = Number(value);
+              if (name === 'revenue') return [`৳${numValue.toLocaleString()}`, 'Revenue'];
+              return [numValue, 'Quantity'];
             }}
           />
           <Bar dataKey="revenue" radius={[0, 4, 4, 0]}>

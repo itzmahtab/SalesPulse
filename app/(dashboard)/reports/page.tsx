@@ -13,7 +13,7 @@ interface SaleData {
   totalAmount: string;
   profit: string;
   createdAt: Date;
-  items: Array<{
+  items?: Array<{
     subtotal: string;
     qty: number;
     product: {
