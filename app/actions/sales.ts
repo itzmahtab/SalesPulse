@@ -2,7 +2,7 @@
 'use server'
 
 import { db } from "@/lib/db";
-import { sales, saleItems, products } from "@/lib/db/schema";
+import { sales, saleItems, products, customers } from "@/lib/db/schema";
 import { auth } from "@/lib/auth";
 import { eq, sql } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -68,12 +68,22 @@ export async function createSale(data: {
           .where(eq(products.id, item.productId));
       }
 
+      // 4. Update Customer Stats if customer is selected
+      if (data.customerId) {
+        await tx.update(customers)
+          .set({
+            totalSpent: sql`${customers.totalSpent} + ${totalAmount}`,
+            orderCount: sql`${customers.orderCount} + 1`,
+          })
+          .where(eq(customers.id, data.customerId));
+      }
+
       revalidatePath('/sales');
       revalidatePath('/inventory');
       revalidatePath('/'); // Refresh dashboard KPIs
       return { success: true, saleId: newSale.id };
     });
-  } catch (error: any) {
-    return { error: error.message || "Failed to process sale" };
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Failed to process sale" };
   }
 }

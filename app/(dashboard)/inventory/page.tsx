@@ -3,17 +3,32 @@ import { db } from "@/lib/db";
 import { products } from "@/lib/db/schema";
 import { auth } from "@/lib/auth";
 import { eq, desc } from "drizzle-orm";
-import { Package, Plus, Search } from "lucide-react";
 import AddProductModal from "@/components/inventory/AddProductModal";
+import EditProductModal from "@/components/inventory/EditProductModal";
+import DeleteProductButton from "@/components/inventory/DeleteProductButton";
+import CopyIdButton from "@/components/inventory/CopyIdButton";
 
 export default async function InventoryPage() {
   const session = await auth();
+  const businessId = session?.user.businessId;
   
-  // Fetch products for this business
+  if (!businessId) {
+    return <div>Unauthorized</div>;
+  }
+
   const businessProducts = await db.query.products.findMany({
-    where: eq(products.businessId, session?.user.businessId!),
+    where: eq(products.businessId, businessId),
     orderBy: [desc(products.createdAt)],
   });
+
+  const totalInventoryValue = businessProducts.reduce(
+    (acc, p) => acc + (Number(p.costPrice) * p.stockQty),
+    0
+  );
+
+  const lowStockCount = businessProducts.filter(
+    p => p.stockQty <= p.lowStockThreshold
+  ).length;
 
   return (
     <div className="space-y-6">
@@ -33,15 +48,11 @@ export default async function InventoryPage() {
         </div>
         <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
           <p className="text-xs text-zinc-500 uppercase font-semibold">Low Stock Items</p>
-          <p className="text-xl font-bold text-amber-500">
-            {businessProducts.filter(p => p.stockQty <= p.lowStockThreshold).length}
-          </p>
+          <p className="text-xl font-bold text-amber-500">{lowStockCount}</p>
         </div>
         <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
           <p className="text-xs text-zinc-500 uppercase font-semibold">Inventory Value</p>
-          <p className="text-xl font-bold text-emerald-500">
-            ${businessProducts.reduce((acc, p) => acc + (Number(p.costPrice) * p.stockQty), 0).toFixed(2)}
-          </p>
+          <p className="text-xl font-bold text-emerald-500">৳{totalInventoryValue.toFixed(2)}</p>
         </div>
       </div>
 
@@ -52,37 +63,64 @@ export default async function InventoryPage() {
             <tr>
               <th className="px-6 py-4 font-medium">Product</th>
               <th className="px-6 py-4 font-medium">SKU</th>
-              <th className="px-6 py-4 font-medium">Price</th>
+              <th className="px-6 py-4 font-medium">Cost / Sell</th>
+              <th className="px-6 py-4 font-medium">Margin</th>
               <th className="px-6 py-4 font-medium">Stock</th>
               <th className="px-6 py-4 font-medium text-right">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-800">
-            {businessProducts.map((product) => (
-              <tr key={product.id} className="hover:bg-zinc-800/30 transition-colors group">
-                <td className="px-6 py-4">
-                  <div className="font-medium text-zinc-200">{product.name}</div>
-                  <div className="text-xs text-zinc-500">{product.category}</div>
-                </td>
-                <td className="px-6 py-4 text-sm text-zinc-400">{product.sku}</td>
-                <td className="px-6 py-4 text-sm text-zinc-200">${product.sellPrice}</td>
-                <td className="px-6 py-4">
-                  <span className={`text-sm px-2 py-1 rounded-full ${
-                    product.stockQty <= product.lowStockThreshold 
-                    ? "bg-rose-500/10 text-rose-500 border border-rose-500/20" 
-                    : "bg-zinc-800 text-zinc-400"
-                  }`}>
-                    {product.stockQty} in stock
-                  </span>
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <button className="text-xs text-zinc-500 hover:text-white">Edit</button>
-                </td>
-              </tr>
-            ))}
+            {businessProducts.map((product) => {
+              const cost = Number(product.costPrice);
+              const sell = Number(product.sellPrice);
+              const margin = ((sell - cost) / cost * 100).toFixed(1);
+              
+              return (
+                <tr key={product.id} className="hover:bg-zinc-800/30 transition-colors">
+                  <td className="px-6 py-4">
+                    <div className="font-medium text-zinc-200">{product.name}</div>
+                    <div className="text-xs text-zinc-500">{product.category || "Uncategorized"}</div>
+                  </td>
+                  <td className="px-6 py-4 text-sm text-zinc-400 font-mono">{product.sku}</td>
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-zinc-400">৳{cost.toFixed(2)}</div>
+                    <div className="text-sm text-zinc-200">৳{sell.toFixed(2)}</div>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`text-sm font-medium ${
+                      Number(margin) > 50 ? 'text-emerald-500' : 
+                      Number(margin) > 20 ? 'text-amber-500' : 'text-rose-500'
+                    }`}>
+                      {margin}%
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <span className={`text-sm px-2 py-1 rounded-full ${
+                      product.stockQty <= 0 
+                        ? "bg-rose-500/20 text-rose-500 border border-rose-500/30"
+                        : product.stockQty <= product.lowStockThreshold 
+                        ? "bg-amber-500/10 text-amber-500 border border-amber-500/20" 
+                        : "bg-zinc-800 text-zinc-400"
+                    }`}>
+                      {product.stockQty} in stock
+                    </span>
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center justify-end gap-2">
+                      <CopyIdButton id={product.id} />
+                      <EditProductModal product={product} />
+                      <DeleteProductButton 
+                        productId={product.id} 
+                        productName={product.name}
+                      />
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
             {businessProducts.length === 0 && (
               <tr>
-                <td colSpan={5} className="px-6 py-12 text-center text-zinc-500 italic">
+                <td colSpan={6} className="px-6 py-12 text-center text-zinc-500 italic">
                   No products found. Add your first item to get started.
                 </td>
               </tr>
