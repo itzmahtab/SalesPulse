@@ -4,7 +4,12 @@
 import { Menu, LogOut, User as UserIcon } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 
-export default function Topbar({ user }: { user: any }) {
+interface UserData {
+  name?: string | null;
+  role?: string;
+}
+
+export default function Topbar({ user }: { user: UserData | null | undefined }) {
   return (
     <header className="h-16 flex items-center justify-between px-6 border-b border-zinc-800 bg-zinc-900/50">
       

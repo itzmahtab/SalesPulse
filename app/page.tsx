@@ -50,7 +50,7 @@ export default function LandingPage() {
             </h1>
             
             <p className="text-lg md:text-xl text-zinc-700 max-w-2xl mx-auto mb-10 leading-relaxed">
-              The AI-driven dashboard that doesn't just show you numbers—it tells you what they mean. Track inventory, forecast revenue, and talk to your data.
+              The AI-driven dashboard that doesn&apos;t just show you numbers—it tells you what they mean. Track inventory, forecast revenue, and talk to your data.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
