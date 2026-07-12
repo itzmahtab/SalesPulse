@@ -77,7 +77,7 @@ export default function LandingPage() {
   const t = useTranslations("landing");
 
   return (
-    <div className="relative min-h-screen bg-background selection:bg-indigo-500/30 overflow-x-hidden text-foreground">
+    <div className="relative min-h-screen bg-gradient-to-b from-indigo-50/60 via-background to-background dark:bg-none dark:bg-background selection:bg-indigo-500/30 overflow-x-hidden text-foreground">
 
       {/* Ambient background orbs */}
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden block">
@@ -478,7 +478,7 @@ export default function LandingPage() {
       </FadeInUp>
 
       {/* --- Footer --- */}
-      <footer className="relative z-10 border-t border-border">
+      <footer className="relative z-10 border-t border-border bg-gradient-to-b from-background via-indigo-50/30 to-background dark:bg-none dark:bg-background">
         <div className="max-w-7xl mx-auto px-6 py-16 md:py-20">
           <div className="grid grid-cols-2 md:grid-cols-6 gap-10 md:gap-8">
 
@@ -488,7 +488,7 @@ export default function LandingPage() {
                 <Activity className="h-5 w-5 text-indigo-400" />
                 <span>SalesPulse</span>
               </Link>
-              <p className="text-sm text-muted-foreground max-w-sm mb-6 leading-relaxed">
+              <p className="text-base text-muted-foreground max-w-sm mb-6 leading-relaxed">
                 {t("footer.tagline")}
               </p>
               <div className="flex items-center gap-3">
@@ -507,7 +507,7 @@ export default function LandingPage() {
             {/* Link columns */}
             {footerSections.map((section) => (
               <div key={section.titleKey}>
-                <h4 className="text-xs uppercase tracking-[0.12em] text-muted-foreground font-medium mb-4">
+                <h4 className="text-sm uppercase tracking-[0.12em] text-muted-foreground font-medium mb-4">
                   {t(`footer.${section.titleKey}`)}
                 </h4>
                 <ul className="space-y-3">
@@ -515,7 +515,7 @@ export default function LandingPage() {
                     <li key={link.labelKey}>
                       <Link
                         href={link.href}
-                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                        className="text-base text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {t(`footer.${link.labelKey}`)}
                       </Link>
@@ -529,17 +529,17 @@ export default function LandingPage() {
 
           {/* Bottom bar */}
           <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               {t("footer.copyright")}
             </p>
-            <div className="flex items-center gap-4">
-              <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <div className="flex items-center gap-6">
+              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {t("footer.privacy")}
               </Link>
-              <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {t("footer.terms")}
               </Link>
-              <Link href="#" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
+              <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 {t("footer.cookie")}
               </Link>
             </div>
