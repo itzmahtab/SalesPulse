@@ -319,7 +319,8 @@
     "tabs": {
       "profile": "Profile",
       "business": "Business",
-      "billing": "Billing"
+      "billing": "Billing",
+      "language": "Language"
     },
     "profile": {
       "title": "Profile Settings",
@@ -346,6 +347,12 @@
       "upgradeBtn": "Upgrade",
       "historyTitle": "Billing History",
       "historyEmptyFree": "No billing history available on Free plan."
+    },
+    "language": {
+      "title": "Language Settings",
+      "subtitle": "Choose your preferred language",
+      "english": "English",
+      "bengali": "Bengali"
     }
   }
 }

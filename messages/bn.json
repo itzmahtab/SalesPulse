@@ -319,7 +319,8 @@
     "tabs": {
       "profile": "প্রোফাইল",
       "business": "ব্যবসা",
-      "billing": "বিলিং"
+      "billing": "বিলিং",
+      "language": "ভাষা"
     },
     "profile": {
       "title": "প্রোফাইল সেটিংস",
@@ -346,6 +347,12 @@
       "upgradeBtn": "আপগ্রেড করুন",
       "historyTitle": "বিলিং ইতিহাস",
       "historyEmptyFree": "ফ্রি প্ল্যানে কোনো বিলিং ইতিহাস উপলব্ধ নেই।"
+    },
+    "language": {
+      "title": "ভাষা সেটিংস",
+      "subtitle": "আপনার পছন্দের ভাষা নির্বাচন করুন",
+      "english": "ইংরেজি",
+      "bengali": "বাংলা"
     }
   }
 }

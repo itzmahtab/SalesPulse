@@ -1,13 +1,14 @@
 // components/settings/SettingsTabs.tsx
 'use client'
 
-import { User, Building2, CreditCard } from "lucide-react";
+import { User, Building2, CreditCard, Globe } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 const tabs = [
   { id: "profile", labelKey: "profile", icon: User },
   { id: "business", labelKey: "business", icon: Building2 },
   { id: "billing", labelKey: "billing", icon: CreditCard },
+  { id: "language", labelKey: "language", icon: Globe },
 ];
 
 interface SettingsTabsProps {

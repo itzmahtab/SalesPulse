@@ -6,6 +6,7 @@ import { SettingsTabs } from "./SettingsTabs";
 import { ProfileSettings } from "./ProfileSettings";
 import { BusinessSettings } from "./BusinessSettings";
 import { BillingSettings } from "./BillingSettings";
+import { LanguageSettings } from "./LanguageSettings";
 
 interface SettingsData {
   business?: {
@@ -39,6 +40,7 @@ export function SettingsClient({ data }: { data: SettingsData }) {
         {activeTab === "billing" && (
           <BillingSettings currentPlan={data.business?.plan || "free"} />
         )}
+        {activeTab === "language" && <LanguageSettings />}
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Activity, ArrowRight, Sparkles, BarChart3, Zap } from "lucide-react";
 import { useTranslations } from "next-intl";
+import LanguageToggle from "@/components/layout/LanguageToggle";
 
 export default function LandingPage() {
   const t = useTranslations("landing");
@@ -26,7 +27,8 @@ export default function LandingPage() {
           <Activity className="h-6 w-6 text-indigo-500" />
           <span>SalesPulse</span>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
+          <LanguageToggle />
           <Link href="/login" className="text-sm font-medium text-zinc-700 hover:text-black transition-colors border border-zinc-800 rounded-full px-5 py-2 hover:bg-black hover:text-white transition-all">
             {t("nav.signIn")}
           </Link>
