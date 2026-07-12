@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { ChevronDown, Search, Package } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Product {
   id: string;
@@ -28,6 +29,7 @@ export default function ProductSelect({ value, onChange, excludeIds = [] }: Prod
   const [loading, setLoading] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations("sales.productSelect");
 
   useEffect(() => {
     async function fetchProducts() {
@@ -75,7 +77,7 @@ export default function ProductSelect({ value, onChange, excludeIds = [] }: Prod
             <span className="text-xs text-zinc-500">({selectedProduct.sku})</span>
           </div>
         ) : (
-          <span className="text-zinc-500">Select a product...</span>
+          <span className="text-zinc-500">{t("selectProduct")}</span>
         )}
         <ChevronDown className={`h-4 w-4 text-zinc-400 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
@@ -88,7 +90,7 @@ export default function ProductSelect({ value, onChange, excludeIds = [] }: Prod
               <input
                 ref={inputRef}
                 type="text"
-                placeholder="Search products..."
+                placeholder={t("searchPlaceholder")}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="w-full bg-transparent py-2 text-sm text-zinc-200 outline-none placeholder:text-zinc-500"
@@ -101,7 +103,7 @@ export default function ProductSelect({ value, onChange, excludeIds = [] }: Prod
             {loading ? (
               <div className="p-4 text-center text-zinc-500 text-sm">Loading...</div>
             ) : products.length === 0 ? (
-              <div className="p-4 text-center text-zinc-500 text-sm">No products found</div>
+              <div className="p-4 text-center text-zinc-500 text-sm">{t("noProducts")}</div>
             ) : (
               products.map((product) => (
                 <button
@@ -122,7 +124,7 @@ export default function ProductSelect({ value, onChange, excludeIds = [] }: Prod
                     <div className="text-right">
                       <p className="text-sm font-semibold text-emerald-400">৳{Number(product.sellPrice).toFixed(2)}</p>
                       <p className={`text-xs ${product.stockQty <= 5 ? 'text-amber-500' : 'text-zinc-500'}`}>
-                        {product.stockQty} in stock
+                        {product.stockQty} {t("inStock")}
                       </p>
                     </div>
                   </div>

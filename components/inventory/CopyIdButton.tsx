@@ -3,8 +3,10 @@
 
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 export default function CopyIdButton({ id }: { id: string }) {
+  const t = useTranslations("inventory.copyId");
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
@@ -19,7 +21,7 @@ export default function CopyIdButton({ id }: { id: string }) {
       className="text-[10px] bg-zinc-800 text-zinc-400 px-2 py-1 rounded hover:text-white transition-colors flex items-center gap-1 ml-auto"
     >
       {copied ? <Check className="h-3 w-3 text-emerald-500" /> : <Copy className="h-3 w-3" />}
-      {copied ? "Copied!" : "ID"}
+      {copied ? t("copied") : t("id")}
     </button>
   );
 }

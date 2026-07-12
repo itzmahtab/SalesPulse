@@ -7,6 +7,7 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger 
 } from "@/components/ui/dialog";
 import { Pencil, Loader2, User } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Customer {
   id: string;
@@ -23,6 +24,7 @@ interface EditCustomerModalProps {
 export default function EditCustomerModal({ customer, onSuccess }: EditCustomerModalProps) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("customers.editModal");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -46,19 +48,19 @@ export default function EditCustomerModal({ customer, onSuccess }: EditCustomerM
       <DialogTrigger asChild>
         <button className="text-xs text-zinc-500 hover:text-white transition-colors flex items-center gap-1">
           <Pencil className="h-3.5 w-3.5" />
-          Edit
+          {t("title")}
         </button>
       </DialogTrigger>
       <DialogContent className="bg-zinc-950 border-zinc-800 text-zinc-100">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <User className="h-5 w-5 text-indigo-400" />
-            Edit Customer
+            {t("title")}
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">Full Name *</label>
+            <label className="text-xs text-zinc-500 mb-1 block">{t("fullName")}</label>
             <input 
               name="name" 
               required 
@@ -67,7 +69,7 @@ export default function EditCustomerModal({ customer, onSuccess }: EditCustomerM
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">Email</label>
+            <label className="text-xs text-zinc-500 mb-1 block">{t("email")}</label>
             <input 
               name="email" 
               type="email"
@@ -77,7 +79,7 @@ export default function EditCustomerModal({ customer, onSuccess }: EditCustomerM
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">Phone</label>
+            <label className="text-xs text-zinc-500 mb-1 block">{t("phone")}</label>
             <input 
               name="phone" 
               type="tel"
@@ -92,7 +94,7 @@ export default function EditCustomerModal({ customer, onSuccess }: EditCustomerM
             className="w-full bg-indigo-600 p-2.5 rounded-md hover:bg-indigo-500 transition-colors font-medium disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-            {loading ? "Saving..." : "Update Customer"}
+            {loading ? t("saving") : t("save")}
           </button>
         </form>
       </DialogContent>

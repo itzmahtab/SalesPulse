@@ -1,0 +1,351 @@
+{
+  "common": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "sales": "Sales",
+      "inventory": "Inventory",
+      "customers": "Customers",
+      "reports": "Reports",
+      "aiInsights": "AI Insights",
+      "settings": "Settings"
+    },
+    "actions": {
+      "save": "Save Changes",
+      "cancel": "Cancel",
+      "edit": "Edit",
+      "delete": "Delete",
+      "search": "Search...",
+      "signOut": "Sign Out",
+      "loading": "Loading..."
+    },
+    "status": {
+      "unauthorized": "Unauthorized"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "Next-Gen AI Sales Intelligence",
+      "titlePart1": "Your Sales Data.",
+      "titlePart2": "Now with a Pulse.",
+      "subtitle": "The AI-driven dashboard that doesn't just show you numbers—it tells you what they mean. Track inventory, forecast revenue, and talk to your data."
+    },
+    "nav": {
+      "signIn": "Sign In",
+      "getStarted": "Get Started"
+    },
+    "buttons": {
+      "getStartedFree": "Get Started Free",
+      "liveDemo": "Live Demo"
+    },
+    "preview": "Dashboard Interface Preview",
+    "features": {
+      "aiInsights": {
+        "title": "AI Business Insights",
+        "desc": "Natural language queries for your inventory and sales performance."
+      },
+      "realTime": {
+        "title": "Real-time Tracking",
+        "desc": "Instant updates across all your business locations and channels."
+      },
+      "visualGrowth": {
+        "title": "Visual Growth",
+        "desc": "Interactive reports and forecasting powered by Llama 3.3."
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to your SalesPulse dashboard.",
+      "emailLabel": "Email Address",
+      "passwordLabel": "Password",
+      "submitButton": "Log In",
+      "signingIn": "Signing in...",
+      "noAccount": "Don't have an account?",
+      "createOne": "Create one",
+      "success": "Logged in successfully!",
+      "invalid": "Invalid email or password.",
+      "registeredMessage": "Account created successfully! Please log in."
+    },
+    "register": {
+      "title": "Create your Workspace",
+      "subtitle": "Set up your business and admin account.",
+      "businessNameLabel": "Business Name",
+      "userNameLabel": "Your Name",
+      "emailLabel": "Email Address",
+      "passwordLabel": "Password",
+      "submitButton": "Create Account",
+      "settingUp": "Setting up...",
+      "haveAccount": "Already have an account?",
+      "logIn": "Log in",
+      "success": "Workspace created successfully!"
+    }
+  },
+  "dashboard": {
+    "overview": {
+      "title": "Overview",
+      "subtitle": "Welcome back, here is what is happening with your store today."
+    },
+    "kpi": {
+      "totalRevenue": "Total Revenue",
+      "totalOrders": "Total Orders",
+      "avgOrderValue": "Avg. Order Value",
+      "grossProfit": "Gross Profit",
+      "vsLastMonth": "vs last month"
+    },
+    "stats": {
+      "totalProducts": "Total Products",
+      "lowStock": "low stock",
+      "totalCustomers": "Total Customers",
+      "inventoryValue": "Inventory Value"
+    },
+    "charts": {
+      "revenueTrend": "Revenue Trend",
+      "salesByCategory": "Sales by Category",
+      "comingSoon": "Chart coming soon",
+      "revenue": "Revenue",
+      "profit": "Profit",
+      "sales": "Sales",
+      "quantity": "Quantity"
+    },
+    "sidebar": {
+      "freePlan": "Free Plan",
+      "salesThisMonth": "{count} / 100 Sales this month"
+    },
+    "topbar": {
+      "userRole": "Admin"
+    }
+  },
+  "sales": {
+    "title": "Sales Orders",
+    "subtitle": "Track and manage your customer invoices.",
+    "newSale": "New Sale",
+    "stats": {
+      "totalSales": "Total Sales",
+      "totalRevenue": "Total Revenue",
+      "totalProfit": "Total Profit"
+    },
+    "table": {
+      "invoice": "Invoice",
+      "customer": "Customer",
+      "items": "Items",
+      "date": "Date",
+      "amount": "Amount",
+      "profit": "Profit",
+      "status": "Status",
+      "walkInCustomer": "Walk-in Customer",
+      "itemCount": "{count} item",
+      "itemsCount": "{count} items",
+      "noSales": "No sales recorded yet. Start by creating your first sale!"
+    },
+    "addModal": {
+      "title": "Record a Sale",
+      "customerLabel": "Customer",
+      "addProductLabel": "Add Product",
+      "itemsLabel": "Items",
+      "noItems": "No items added yet",
+      "selectProductToStart": "Select a product above to start",
+      "subtotal": "Subtotal",
+      "totalCost": "Total Cost",
+      "grossProfit": "Gross Profit",
+      "completeSale": "Complete Sale",
+      "qty": "Qty",
+      "onlyLeft": "Only {count} left"
+    },
+    "productSelect": {
+      "searchPlaceholder": "Search products...",
+      "selectProduct": "Select a product...",
+      "noProducts": "No products found",
+      "inStock": "in stock"
+    },
+    "customerSelect": {
+      "searchPlaceholder": "Search customers...",
+      "walkInCustomer": "Walk-in Customer",
+      "noCustomer": "No customer",
+      "noCustomers": "No customers found",
+      "orders": "orders",
+      "total": "Total",
+      "noContactInfo": "No contact info"
+    }
+  },
+  "inventory": {
+    "title": "Inventory",
+    "subtitle": "Manage your products and stock levels.",
+    "addProduct": "Add Product",
+    "stats": {
+      "totalProducts": "Total Products",
+      "lowStockItems": "Low Stock Items",
+      "inventoryValue": "Inventory Value"
+    },
+    "table": {
+      "product": "Product",
+      "sku": "SKU",
+      "costSell": "Cost / Sell",
+      "margin": "Margin",
+      "stock": "Stock",
+      "actions": "Actions",
+      "uncategorized": "Uncategorized",
+      "inStock": "in stock",
+      "noProducts": "No products found. Add your first item to get started."
+    },
+    "copyId": {
+      "id": "ID",
+      "copied": "Copied!"
+    },
+    "deleteModal": {
+      "title": "Delete Product",
+      "confirmMessage": "Are you sure you want to delete",
+      "warningText": "This action cannot be undone. The product and all related data will be permanently removed.",
+      "deleting": "Deleting..."
+    },
+    "addModal": {
+      "title": "Add New Product",
+      "nameLabel": "Product Name",
+      "skuLabel": "SKU",
+      "categoryLabel": "Category",
+      "costPriceLabel": "Cost Price ($)",
+      "sellPriceLabel": "Sell Price ($)",
+      "initialStockLabel": "Initial Stock Quantity",
+      "saveProduct": "Save Product",
+      "saving": "Saving..."
+    },
+    "editModal": {
+      "title": "Edit Product",
+      "nameLabel": "Product Name",
+      "skuLabel": "SKU",
+      "categoryLabel": "Category",
+      "costPriceLabel": "Cost Price ($)",
+      "sellPriceLabel": "Sell Price ($)",
+      "stockLabel": "Stock Quantity",
+      "lowStockAlertLabel": "Low Stock Alert",
+      "updateProduct": "Update Product",
+      "saving": "Saving..."
+    }
+  },
+  "customers": {
+    "title": "Customers",
+    "subtitle": "Manage your customer database and track purchases.",
+    "addCustomer": "Add Customer",
+    "stats": {
+      "totalCustomers": "Total Customers",
+      "totalOrders": "Total Orders",
+      "totalRevenue": "Total Revenue from Customers"
+    },
+    "table": {
+      "customer": "Customer",
+      "contact": "Contact",
+      "orders": "Orders",
+      "totalSpent": "Total Spent",
+      "actions": "Actions",
+      "joined": "Joined",
+      "noContactInfo": "No contact info",
+      "noCustomers": "No customers found. Add your first customer to get started."
+    },
+    "deleteModal": {
+      "title": "Delete Customer",
+      "confirmMessage": "Are you sure you want to delete",
+      "warningText": "This action cannot be undone. Any sales history for this customer will be preserved but become anonymous.",
+      "deleting": "Deleting..."
+    },
+    "addModal": {
+      "title": "Add New Customer",
+      "fullNameLabel": "Full Name *",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "addCustomer": "Add Customer",
+      "adding": "Adding..."
+    },
+    "editModal": {
+      "title": "Edit Customer",
+      "fullNameLabel": "Full Name *",
+      "emailLabel": "Email",
+      "phoneLabel": "Phone",
+      "updateCustomer": "Update Customer",
+      "saving": "Saving..."
+    }
+  },
+  "reports": {
+    "title": "Reports",
+    "subtitle": "Analytics and insights for your business.",
+    "stats": {
+      "thisWeek": "This Week",
+      "thisMonth": "This Month",
+      "thisYear": "This Year",
+      "totalProfit": "Total Profit"
+    },
+    "charts": {
+      "revenueTrend": "Revenue Trend (30 Days)",
+      "salesByCategory": "Sales by Category",
+      "topProducts": "Top Products",
+      "noCategoryData": "No category data available",
+      "noProductData": "No product data available",
+      "revenue": "Revenue",
+      "profit": "Profit",
+      "sales": "Sales",
+      "quantity": "Quantity"
+    }
+  },
+  "ai": {
+    "title": "AI Insights",
+    "subtitle": "Get intelligent insights about your business performance.",
+    "chat": {
+      "headerTitle": "AI Business Insights",
+      "headerSubtitle": "Ask questions about your sales and inventory",
+      "welcomeTitle": "What would you like to know?",
+      "welcomeDesc": "Ask about your sales performance, inventory status, customer insights, or any business metrics.",
+      "analyzing": "Analyzing your data...",
+      "placeholder": "Ask about your business...",
+      "errorMessage": "Sorry, I encountered an error. Please try again.",
+      "insightLabel": "AI Insights",
+      "errorPrefix": "Error",
+      "suggestions": {
+        "revenueTrends": "Show me my revenue trends",
+        "lowStock": "What products are low in stock?",
+        "topCustomers": "Who are my top customers?",
+        "profitMargin": "What's my profit margin?",
+        "compareWeeks": "Compare this week to last week"
+      }
+    },
+    "insightTypes": {
+      "totalProducts": "Total Products",
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Manage your account and business settings.",
+    "errorMsg": "Unable to load settings. Please try again.",
+    "tabs": {
+      "profile": "Profile",
+      "business": "Business",
+      "billing": "Billing"
+    },
+    "profile": {
+      "title": "Profile Settings",
+      "subtitle": "Update your personal information",
+      "fullName": "Full Name",
+      "email": "Email",
+      "role": "Role",
+      "roleHint": "Role cannot be changed"
+    },
+    "business": {
+      "title": "Business Settings",
+      "subtitle": "Manage your business information",
+      "businessName": "Business Name",
+      "businessSlug": "Business URL Slug",
+      "slugHint": "Only lowercase letters, numbers, and hyphens",
+      "currentPlan": "Current Plan",
+      "upgradeToPro": "Upgrade to Pro →"
+    },
+    "billing": {
+      "title": "Billing & Plans",
+      "subtitle": "Manage your subscription and billing",
+      "currentBadge": "Current",
+      "perMonth": "/month",
+      "upgradeBtn": "Upgrade",
+      "historyTitle": "Billing History",
+      "historyEmptyFree": "No billing history available on Free plan."
+    }
+  }
+}

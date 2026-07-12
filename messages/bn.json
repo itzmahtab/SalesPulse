@@ -1,0 +1,351 @@
+{
+  "common": {
+    "nav": {
+      "dashboard": "ড্যাশবোর্ড",
+      "sales": "বিক্রয়",
+      "inventory": "ইনভেন্টরি",
+      "customers": "গ্রাহক",
+      "reports": "রিপোর্ট",
+      "aiInsights": "এআই ইনসাইটস",
+      "settings": "সেটিংস"
+    },
+    "actions": {
+      "save": "পরিবর্তন সংরক্ষণ করুন",
+      "cancel": "বাতিল",
+      "edit": "সম্পাদনা",
+      "delete": "মুছুন",
+      "search": "অনুসন্ধান...",
+      "signOut": "সাইন আউট",
+      "loading": "লোড হচ্ছে..."
+    },
+    "status": {
+      "unauthorized": "অননুমোদিত"
+    }
+  },
+  "landing": {
+    "hero": {
+      "badge": "নেক্সট-জেন এআই সেলস ইন্টেলিজেন্স",
+      "titlePart1": "আপনার বিক্রয়ের ডেটা।",
+      "titlePart2": "এখন একটি স্পন্দনের সাথে।",
+      "subtitle": "এআই-চালিত ড্যাশবোর্ড যা আপনাকে কেবল সংখ্যা দেখায় না—এটি আপনাকে বলে যে এগুলোর অর্থ কী। ইনভেন্টরি ট্র্যাক করুন, রাজস্ব পূর্বাভাস করুন এবং আপনার ডেটার সাথে কথা বলুন।"
+    },
+    "nav": {
+      "signIn": "সাইন ইন",
+      "getStarted": "শুরু করুন"
+    },
+    "buttons": {
+      "getStartedFree": "বিনামূল্যে শুরু করুন",
+      "liveDemo": "লাইভ ডেমো"
+    },
+    "preview": "ড্যাশবোর্ড ইন্টারফেস প্রিভিউ",
+    "features": {
+      "aiInsights": {
+        "title": "এআই বিজনেস ইনসাইটস",
+        "desc": "আপনার ইনভেন্টরি এবং বিক্রয় কর্মক্ষমতার জন্য সাধারণ ভাষার প্রশ্নাবলী।"
+      },
+      "realTime": {
+        "title": "রিয়েল-টাইম ট্র্যাকিং",
+        "desc": "আপনার সমস্ত ব্যবসার অবস্থান এবং চ্যানেল জুড়ে তাৎক্ষণিক আপডেট।"
+      },
+      "visualGrowth": {
+        "title": "ভিজ্যুয়াল গ্রোথ",
+        "desc": "Llama 3.3 দ্বারা চালিত ইন্টারেক্টিভ রিপোর্ট এবং পূর্বাভাস।"
+      }
+    }
+  },
+  "auth": {
+    "login": {
+      "title": "স্বাগতম",
+      "subtitle": "আপনার SalesPulse ড্যাশবোর্ডে সাইন ইন করুন।",
+      "emailLabel": "ইমেইল ঠিকানা",
+      "passwordLabel": "পাসওয়ার্ড",
+      "submitButton": "লগ ইন",
+      "signingIn": "সাইন ইন হচ্ছে...",
+      "noAccount": "অ্যাকাউন্ট নেই?",
+      "createOne": "একটি তৈরি করুন",
+      "success": "সফলভাবে লগ ইন হয়েছে!",
+      "invalid": "অকার্যকর ইমেইল বা পাসওয়ার্ড।",
+      "registeredMessage": "অ্যাকাউন্ট সফলভাবে তৈরি করা হয়েছে! অনুগ্রহ করে লগ ইন করুন।"
+    },
+    "register": {
+      "title": "আপনার ওয়ার্কস্পেস তৈরি করুন",
+      "subtitle": "আপনার ব্যবসা এবং অ্যাডমিন অ্যাকাউন্ট সেট আপ করুন।",
+      "businessNameLabel": "ব্যবসার নাম",
+      "userNameLabel": "আপনার নাম",
+      "emailLabel": "ইমেইল ঠিকানা",
+      "passwordLabel": "পাসওয়ার্ড",
+      "submitButton": "অ্যাকাউন্ট তৈরি করুন",
+      "settingUp": "সেট আপ করা হচ্ছে...",
+      "haveAccount": "ইতিমধ্যে একটি অ্যাকাউন্ট আছে?",
+      "logIn": "লগ ইন",
+      "success": "ওয়ার্কস্পেস সফলভাবে তৈরি করা হয়েছে!"
+    }
+  },
+  "dashboard": {
+    "overview": {
+      "title": "ওভারভিউ",
+      "subtitle": "স্বাগতম, আজ আপনার দোকানে যা ঘটছে তা এখানে।"
+    },
+    "kpi": {
+      "totalRevenue": "মোট রাজস্ব",
+      "totalOrders": "মোট অর্ডার",
+      "avgOrderValue": "গড় অর্ডারের মূল্য",
+      "grossProfit": "মোট লাভ",
+      "vsLastMonth": "গত মাসের তুলনায়"
+    },
+    "stats": {
+      "totalProducts": "মোট পণ্য",
+      "lowStock": "কম স্টক",
+      "totalCustomers": "মোট গ্রাহক",
+      "inventoryValue": "ইনভেন্টরি মূল্য"
+    },
+    "charts": {
+      "revenueTrend": "রাজস্বের ধারা",
+      "salesByCategory": "বিভাগ অনুসারে বিক্রয়",
+      "comingSoon": "চার্ট শীঘ্রই আসছে",
+      "revenue": "রাজস্ব",
+      "profit": "লাভ",
+      "sales": "বিক্রয়",
+      "quantity": "পরিমাণ"
+    },
+    "sidebar": {
+      "freePlan": "ফ্রি প্ল্যান",
+      "salesThisMonth": "এই মাসে {count} / 100 বিক্রয়"
+    },
+    "topbar": {
+      "userRole": "অ্যাডমিন"
+    }
+  },
+  "sales": {
+    "title": "বিক্রয় অর্ডার",
+    "subtitle": "আপনার গ্রাহক চালান ট্র্যাক এবং পরিচালনা করুন।",
+    "newSale": "নতুন বিক্রয়",
+    "stats": {
+      "totalSales": "মোট বিক্রয়",
+      "totalRevenue": "মোট রাজস্ব",
+      "totalProfit": "মোট লাভ"
+    },
+    "table": {
+      "invoice": "চালান",
+      "customer": "গ্রাহক",
+      "items": "আইটেম",
+      "date": "তারিখ",
+      "amount": "পরিমাণ",
+      "profit": "লাভ",
+      "status": "অবস্থা",
+      "walkInCustomer": "ওয়াক-ইন গ্রাহক",
+      "itemCount": "{count} আইটেম",
+      "itemsCount": "{count} আইটেম",
+      "noSales": "এখনও কোনও বিক্রয় রেকর্ড করা হয়নি। আপনার প্রথম বিক্রয় তৈরি করে শুরু করুন!"
+    },
+    "addModal": {
+      "title": "একটি বিক্রয় রেকর্ড করুন",
+      "customerLabel": "গ্রাহক",
+      "addProductLabel": "পণ্য যোগ করুন",
+      "itemsLabel": "আইটেম",
+      "noItems": "এখনও কোনো আইটেম যোগ করা হয়নি",
+      "selectProductToStart": "শুরু করতে উপরের একটি পণ্য নির্বাচন করুন",
+      "subtotal": "সাবটোটাল",
+      "totalCost": "মোট খরচ",
+      "grossProfit": "মোট লাভ",
+      "completeSale": "সম্পূর্ণ বিক্রয়",
+      "qty": "পরিমাণ",
+      "onlyLeft": "মাত্র {count} টি অবশিষ্ট"
+    },
+    "productSelect": {
+      "searchPlaceholder": "পণ্য খুঁজুন...",
+      "selectProduct": "একটি পণ্য নির্বাচন করুন...",
+      "noProducts": "কোন পণ্য পাওয়া যায়নি",
+      "inStock": "স্টক আছে"
+    },
+    "customerSelect": {
+      "searchPlaceholder": "গ্রাহকদের খুঁজুন...",
+      "walkInCustomer": "ওয়াক-ইন গ্রাহক",
+      "noCustomer": "কোন গ্রাহক নেই",
+      "noCustomers": "কোন গ্রাহক পাওয়া যায়নি",
+      "orders": "অর্ডার",
+      "total": "মোট",
+      "noContactInfo": "কোন যোগাযোগের তথ্য নেই"
+    }
+  },
+  "inventory": {
+    "title": "ইনভেন্টরি",
+    "subtitle": "আপনার পণ্য এবং স্টক স্তর পরিচালনা করুন।",
+    "addProduct": "পণ্য যোগ করুন",
+    "stats": {
+      "totalProducts": "মোট পণ্য",
+      "lowStockItems": "কম স্টক আইটেম",
+      "inventoryValue": "ইনভেন্টরি মূল্য"
+    },
+    "table": {
+      "product": "পণ্য",
+      "sku": "SKU",
+      "costSell": "খরচ / বিক্রি",
+      "margin": "মার্জিন",
+      "stock": "স্টক",
+      "actions": "ক্রিয়া",
+      "uncategorized": "শ্রেণীভুক্ত নয়",
+      "inStock": "স্টক আছে",
+      "noProducts": "কোন পণ্য পাওয়া যায়নি। শুরু করতে আপনার প্রথম আইটেম যোগ করুন।"
+    },
+    "copyId": {
+      "id": "আইডি",
+      "copied": "কপি করা হয়েছে!"
+    },
+    "deleteModal": {
+      "title": "পণ্য মুছুন",
+      "confirmMessage": "আপনি কি মুছতে নিশ্চিত",
+      "warningText": "এই ক্রিয়াটি পূর্বাবস্থায় ফেরানো যাবে না। পণ্য এবং সমস্ত সম্পর্কিত ডেটা স্থায়ীভাবে মুছে ফেলা হবে।",
+      "deleting": "মুছে ফেলা হচ্ছে..."
+    },
+    "addModal": {
+      "title": "নতুন পণ্য যোগ করুন",
+      "nameLabel": "পণ্যের নাম",
+      "skuLabel": "SKU",
+      "categoryLabel": "বিভাগ",
+      "costPriceLabel": "খরচের মূল্য ($)",
+      "sellPriceLabel": "বিক্রয় মূল্য ($)",
+      "initialStockLabel": "প্রাথমিক স্টকের পরিমাণ",
+      "saveProduct": "পণ্য সংরক্ষণ করুন",
+      "saving": "সংরক্ষণ করা হচ্ছে..."
+    },
+    "editModal": {
+      "title": "পণ্য সম্পাদনা করুন",
+      "nameLabel": "পণ্যের নাম",
+      "skuLabel": "SKU",
+      "categoryLabel": "বিভাগ",
+      "costPriceLabel": "খরচের মূল্য ($)",
+      "sellPriceLabel": "বিক্রয় মূল্য ($)",
+      "stockLabel": "স্টকের পরিমাণ",
+      "lowStockAlertLabel": "কম স্টক সতর্কতা",
+      "updateProduct": "পণ্য আপডেট করুন",
+      "saving": "সংরক্ষণ করা হচ্ছে..."
+    }
+  },
+  "customers": {
+    "title": "গ্রাহক",
+    "subtitle": "আপনার গ্রাহক ডাটাবেস পরিচালনা করুন এবং কেনাকাটা ট্র্যাক করুন।",
+    "addCustomer": "গ্রাহক যোগ করুন",
+    "stats": {
+      "totalCustomers": "মোট গ্রাহক",
+      "totalOrders": "মোট অর্ডার",
+      "totalRevenue": "গ্রাহকদের থেকে মোট রাজস্ব"
+    },
+    "table": {
+      "customer": "গ্রাহক",
+      "contact": "যোগাযোগ",
+      "orders": "অর্ডার",
+      "totalSpent": "মোট ব্যয়",
+      "actions": "ক্রিয়া",
+      "joined": "যোগদান করেছেন",
+      "noContactInfo": "কোনো যোগাযোগের তথ্য নেই",
+      "noCustomers": "কোন গ্রাহক পাওয়া যায়নি। শুরু করতে আপনার প্রথম গ্রাহক যোগ করুন।"
+    },
+    "deleteModal": {
+      "title": "গ্রাহক মুছুন",
+      "confirmMessage": "আপনি কি মুছতে নিশ্চিত",
+      "warningText": "এই ক্রিয়াটি পূর্বাবস্থায় ফেরানো যাবে না। এই গ্রাহকের যেকোন বিক্রয়ের ইতিহাস সংরক্ষিত থাকবে তবে বেনামী হয়ে যাবে।",
+      "deleting": "মুছে ফেলা হচ্ছে..."
+    },
+    "addModal": {
+      "title": "নতুন গ্রাহক যোগ করুন",
+      "fullNameLabel": "পুরো নাম *",
+      "emailLabel": "ইমেইল",
+      "phoneLabel": "ফোন",
+      "addCustomer": "গ্রাহক যোগ করুন",
+      "adding": "যোগ করা হচ্ছে..."
+    },
+    "editModal": {
+      "title": "গ্রাহক সম্পাদনা করুন",
+      "fullNameLabel": "পুরো নাম *",
+      "emailLabel": "ইমেইল",
+      "phoneLabel": "ফোন",
+      "updateCustomer": "গ্রাহক আপডেট করুন",
+      "saving": "সংরক্ষণ করা হচ্ছে..."
+    }
+  },
+  "reports": {
+    "title": "রিপোর্ট",
+    "subtitle": "আপনার ব্যবসার জন্য অ্যানালিটিক্স এবং ইনসাইট।",
+    "stats": {
+      "thisWeek": "এই সপ্তাহ",
+      "thisMonth": "এই মাস",
+      "thisYear": "এই বছর",
+      "totalProfit": "মোট লাভ"
+    },
+    "charts": {
+      "revenueTrend": "রাজস্বের ধারা (৩০ দিন)",
+      "salesByCategory": "বিভাগ অনুসারে বিক্রয়",
+      "topProducts": "শীর্ষ পণ্য",
+      "noCategoryData": "কোন বিভাগের ডেটা উপলব্ধ নেই",
+      "noProductData": "কোন পণ্যের ডেটা উপলব্ধ নেই",
+      "revenue": "রাজস্ব",
+      "profit": "লাভ",
+      "sales": "বিক্রয়",
+      "quantity": "পরিমাণ"
+    }
+  },
+  "ai": {
+    "title": "এআই ইনসাইটস",
+    "subtitle": "আপনার ব্যবসার কর্মক্ষমতা সম্পর্কে বুদ্ধিমান ইনসাইট পান।",
+    "chat": {
+      "headerTitle": "এআই বিজনেস ইনসাইটস",
+      "headerSubtitle": "আপনার বিক্রয় এবং ইনভেন্টরি সম্পর্কে প্রশ্ন জিজ্ঞাসা করুন",
+      "welcomeTitle": "আপনি কি জানতে চান?",
+      "welcomeDesc": "আপনার বিক্রয় কর্মক্ষমতা, ইনভেন্টরি অবস্থা, গ্রাহক ইনসাইট বা যে কোনো ব্যবসায়িক মেট্রিক সম্পর্কে জিজ্ঞাসা করুন।",
+      "analyzing": "আপনার ডেটা বিশ্লেষণ করা হচ্ছে...",
+      "placeholder": "আপনার ব্যবসা সম্পর্কে জিজ্ঞাসা করুন...",
+      "errorMessage": "দুঃখিত, একটি ত্রুটি দেখা দিয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+      "insightLabel": "এআই ইনসাইটস",
+      "errorPrefix": "ত্রুটি",
+      "suggestions": {
+        "revenueTrends": "আমার রাজস্বের ধারা দেখান",
+        "lowStock": "কোন পণ্যের স্টক কম?",
+        "topCustomers": "আমার শীর্ষ গ্রাহক কারা?",
+        "profitMargin": "আমার মুনাফার মার্জিন কত?",
+        "compareWeeks": "এই সপ্তাহকে গত সপ্তাহের সাথে তুলনা করুন"
+      }
+    },
+    "insightTypes": {
+      "totalProducts": "মোট পণ্য",
+      "lowStock": "কম স্টক",
+      "outOfStock": "স্টক আউট"
+    }
+  },
+  "settings": {
+    "title": "সেটিংস",
+    "subtitle": "আপনার অ্যাকাউন্ট এবং ব্যবসা সেটিংস পরিচালনা করুন।",
+    "errorMsg": "সেটিংস লোড করতে অক্ষম। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "tabs": {
+      "profile": "প্রোফাইল",
+      "business": "ব্যবসা",
+      "billing": "বিলিং"
+    },
+    "profile": {
+      "title": "প্রোফাইল সেটিংস",
+      "subtitle": "আপনার ব্যক্তিগত তথ্য আপডেট করুন",
+      "fullName": "পুরো নাম",
+      "email": "ইমেইল",
+      "role": "ভূমিকা",
+      "roleHint": "ভূমিকা পরিবর্তন করা যাবে না"
+    },
+    "business": {
+      "title": "ব্যবসা সেটিংস",
+      "subtitle": "আপনার ব্যবসার তথ্য পরিচালনা করুন",
+      "businessName": "ব্যবসার নাম",
+      "businessSlug": "ব্যবসায়িক URL স্লাগ",
+      "slugHint": "শুধুমাত্র ছোট হাতের অক্ষর, সংখ্যা এবং হাইফেন",
+      "currentPlan": "বর্তমান প্ল্যান",
+      "upgradeToPro": "প্রো-তে আপগ্রেড করুন →"
+    },
+    "billing": {
+      "title": "বিলিং এবং প্ল্যান",
+      "subtitle": "আপনার সাবস্ক্রিপশন এবং বিলিং পরিচালনা করুন",
+      "currentBadge": "বর্তমান",
+      "perMonth": "/মাস",
+      "upgradeBtn": "আপগ্রেড করুন",
+      "historyTitle": "বিলিং ইতিহাস",
+      "historyEmptyFree": "ফ্রি প্ল্যানে কোনো বিলিং ইতিহাস উপলব্ধ নেই।"
+    }
+  }
+}

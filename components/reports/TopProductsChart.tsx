@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
   Cell,
 } from "recharts";
+import { useTranslations } from "next-intl";
 
 interface ChartData {
   name: string;
@@ -23,6 +24,7 @@ interface TopProductsChartProps {
 }
 
 export function TopProductsChart({ data }: TopProductsChartProps) {
+  const t = useTranslations("reports.charts");
   return (
     <div className="h-48">
       <ResponsiveContainer width="100%" height="100%">
@@ -58,8 +60,8 @@ export function TopProductsChart({ data }: TopProductsChartProps) {
             }}
             formatter={(value, name) => {
               const numValue = Number(value);
-              if (name === 'revenue') return [`৳${numValue.toLocaleString()}`, 'Revenue'];
-              return [numValue, 'Quantity'];
+              if (name === 'revenue') return [`৳${numValue.toLocaleString()}`, t("revenue")];
+              return [numValue, t("quantity")];
             }}
           />
           <Bar dataKey="revenue" radius={[0, 4, 4, 0]}>

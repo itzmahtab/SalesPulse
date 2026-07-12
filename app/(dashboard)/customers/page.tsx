@@ -6,7 +6,8 @@ import { eq, desc } from "drizzle-orm";
 import AddCustomerModal from "@/components/customers/AddCustomerModal";
 import EditCustomerModal from "@/components/customers/EditCustomerModal";
 import DeleteCustomerButton from "@/components/customers/DeleteCustomerButton";
-import { Users, Mail, Phone, ShoppingBag } from "lucide-react";
+import { Users, Mail, Phone, ShoppingBag, Search } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export default async function CustomersPage() {
   const session = await auth();
@@ -16,12 +17,14 @@ export default async function CustomersPage() {
     return <div>Unauthorized</div>;
   }
 
+  const t = await getTranslations("customers");
+
   const businessCustomers = await db.query.customers.findMany({
     where: eq(customers.businessId, businessId),
     orderBy: [desc(customers.createdAt)],
   });
 
-  const totalRevenue = businessCustomers.reduce(
+  const totalCustomerRevenue = businessCustomers.reduce(
     (acc, c) => acc + Number(c.totalSpent),
     0
   );
@@ -33,40 +36,52 @@ export default async function CustomersPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Customers</h1>
-          <p className="text-zinc-400 text-sm">Manage your customer database and track purchases.</p>
+          <h1 className="text-2xl font-bold text-zinc-100">{t("title")}</h1>
+          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
         </div>
         <AddCustomerModal />
       </div>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">Total Customers</p>
-          <p className="text-xl font-bold">{businessCustomers.length}</p>
+        <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+          <p className="text-sm font-medium text-zinc-400 mb-1">{t("stats.totalCustomers")}</p>
+          <p className="text-2xl font-bold text-zinc-100">{businessCustomers.length}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">Total Orders</p>
-          <p className="text-xl font-bold">{totalOrders}</p>
+        <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+          <p className="text-sm font-medium text-zinc-400 mb-1">{t("stats.totalRevenue")}</p>
+          <p className="text-2xl font-bold text-emerald-400">৳{totalCustomerRevenue.toLocaleString()}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">Total Revenue from Customers</p>
-          <p className="text-xl font-bold text-emerald-500">৳{totalRevenue.toFixed(2)}</p>
+        <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+          <p className="text-sm font-medium text-zinc-400 mb-1">{t("stats.avgOrderValue")}</p>
+          <p className="text-2xl font-bold text-indigo-400">
+            ৳{totalOrders > 0 ? (totalCustomerRevenue / totalOrders).toFixed(0) : "0"}
+          </p>
         </div>
       </div>
 
       {/* Customers Table */}
       <div className="rounded-xl border border-zinc-800 bg-zinc-900/20 overflow-hidden">
+        <div className="p-4 border-b border-zinc-800 flex gap-4">
+          <div className="relative flex-1 max-w-md">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+            <input 
+              type="text" 
+              placeholder={t("customerSelect.searchPlaceholder")}
+              className="w-full bg-zinc-950 border border-zinc-800 rounded-lg pl-10 pr-4 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 outline-none focus:border-indigo-500 transition-colors"
+            />
+          </div>
+        </div>
         <table className="w-full text-left border-collapse">
-          <thead className="bg-zinc-900/60 border-b border-zinc-800 text-zinc-400 text-xs uppercase">
+          <thead className="text-xs text-zinc-500 bg-zinc-900/50 border-b border-zinc-800 uppercase">
             <tr>
-              <th className="px-6 py-4 font-medium">Customer</th>
-              <th className="px-6 py-4 font-medium">Contact</th>
-              <th className="px-6 py-4 font-medium text-center">Orders</th>
-              <th className="px-6 py-4 font-medium text-right">Total Spent</th>
-              <th className="px-6 py-4 font-medium text-right">Actions</th>
+              <th className="px-6 py-4 font-medium">{t("table.customer")}</th>
+              <th className="px-6 py-4 font-medium">{t("table.contact")}</th>
+              <th className="px-6 py-4 font-medium text-right">{t("table.orders")}</th>
+              <th className="px-6 py-4 font-medium text-right">{t("table.totalSpent")}</th>
+              <th className="px-6 py-4 font-medium text-center">{t("table.actions")}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-800">
@@ -99,9 +114,6 @@ export default async function CustomersPage() {
                         {customer.phone}
                       </div>
                     )}
-                    {!customer.email && !customer.phone && (
-                      <span className="text-xs text-zinc-600 italic">No contact info</span>
-                    )}
                   </div>
                 </td>
                 <td className="px-6 py-4 text-center">
@@ -127,7 +139,7 @@ export default async function CustomersPage() {
             {businessCustomers.length === 0 && (
               <tr>
                 <td colSpan={5} className="px-6 py-12 text-center text-zinc-500 italic">
-                  No customers found. Add your first customer to get started.
+                  {t("table.noCustomers")}
                 </td>
               </tr>
             )}

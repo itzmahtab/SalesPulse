@@ -10,6 +10,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useTranslations, useLocale } from "next-intl";
 
 interface ChartData {
   date: string;
@@ -22,10 +23,12 @@ interface RevenueChartProps {
 }
 
 export function RevenueChart({ data }: RevenueChartProps) {
+  const t = useTranslations("dashboard.charts");
+  const locale = useLocale();
   const formatDate = (date: string | React.ReactNode) => {
     if (typeof date !== 'string') return String(date);
     const d = new Date(date);
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    return d.toLocaleDateString(locale, { month: 'short', day: 'numeric' });
   };
 
   return (
@@ -70,7 +73,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
               const numValue = Number(value);
               return [
                 `৳${numValue.toLocaleString()}`,
-                name === 'revenue' ? 'Revenue' : 'Profit',
+                name === 'revenue' ? t("revenue") : t("profit"),
               ];
             }}
           />
@@ -93,11 +96,11 @@ export function RevenueChart({ data }: RevenueChartProps) {
       <div className="flex items-center justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-indigo-500" />
-          <span className="text-xs text-zinc-400">Revenue</span>
+          <span className="text-xs text-zinc-400">{t("revenue")}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-emerald-500" />
-          <span className="text-xs text-zinc-400">Profit</span>
+          <span className="text-xs text-zinc-400">{t("profit")}</span>
         </div>
       </div>
     </div>

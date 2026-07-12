@@ -18,20 +18,27 @@ export const metadata: Metadata = {
 };
 
 import { Toaster } from "@/components/ui/sonner"
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages, getLocale } from 'next-intl/server';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-        <Toaster position="bottom-right" theme="dark" />
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          {children}
+          <Toaster position="bottom-right" theme="dark" />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

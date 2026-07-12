@@ -14,6 +14,7 @@ import {
   Activity
 } from 'lucide-react';
 import { cn } from '@/lib/utils'; // standard shadcn utility
+import { useTranslations } from 'next-intl';
 
 const routes = [
   { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
@@ -27,6 +28,8 @@ const routes = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const t = useTranslations('common');
+  const dashboardT = useTranslations('dashboard.sidebar');
 
   return (
     <aside className="hidden md:flex flex-col w-64 h-full border-r border-zinc-800 bg-zinc-900/50">
@@ -54,7 +57,7 @@ export default function Sidebar() {
               )}
             >
               <Icon className="h-5 w-5" />
-              {route.name}
+              {t(`nav.${route.name.replace(' ', '').toLowerCase()}`)}
             </Link>
           );
         })}
@@ -62,11 +65,11 @@ export default function Sidebar() {
 
       {/* Placeholder for Agency Upsell / Plan Limits later */}
       <div className="p-4 m-3 mt-auto bg-zinc-950 border border-zinc-800 rounded-lg">
-        <p className="text-xs text-zinc-400 font-medium mb-1">Free Plan</p>
+        <p className="text-xs text-zinc-400 font-medium mb-1">{dashboardT('freePlan')}</p>
         <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
           <div className="h-full bg-indigo-500 w-[12%]" />
         </div>
-        <p className="text-[10px] text-zinc-500 mt-2">12 / 100 Sales this month</p>
+        <p className="text-[10px] text-zinc-500 mt-2">{dashboardT('salesThisMonth', { count: 12 })}</p>
       </div>
     </aside>
   );

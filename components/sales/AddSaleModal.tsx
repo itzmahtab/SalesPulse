@@ -8,6 +8,7 @@ import CustomerSelect from "./CustomerSelect";
 import LineItemRow from "./LineItemRow";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Plus, Loader2, ShoppingCart, Package } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface LineItem {
   id: string;
@@ -25,6 +26,7 @@ export default function AddSaleModal() {
   const [loading, setLoading] = useState(false);
   const [customerId, setCustomerId] = useState<string | null>(null);
   const [lineItems, setLineItems] = useState<LineItem[]>([]);
+  const t = useTranslations("sales.addModal");
 
   const subtotal = lineItems.reduce((acc, item) => acc + Number(item.unitPrice) * item.quantity, 0);
   const totalCost = lineItems.reduce((acc, item) => acc + Number(item.costPrice) * item.quantity, 0);
@@ -101,21 +103,21 @@ export default function AddSaleModal() {
       <DialogTrigger asChild>
         <button className="flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-500 transition-colors font-medium">
           <Plus className="h-4 w-4" />
-          New Sale
+          {t("title")}
         </button>
       </DialogTrigger>
       <DialogContent className="bg-zinc-950 border-zinc-800 text-zinc-100 max-w-lg max-h-[90vh] overflow-hidden flex flex-col">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <ShoppingCart className="h-5 w-5 text-emerald-500" />
-            Record a Sale
+            {t("title")}
           </DialogTitle>
         </DialogHeader>
 
         <div className="flex-1 overflow-y-auto space-y-4 py-4">
           {/* Customer Selection */}
           <div>
-            <label className="text-xs text-zinc-500 mb-2 block">Customer</label>
+            <label className="text-xs text-zinc-500 mb-2 block">{t("customerLabel")}</label>
             <CustomerSelect
               value={customerId || ""}
               onChange={(customer) => setCustomerId(customer?.id || null)}
@@ -124,7 +126,7 @@ export default function AddSaleModal() {
 
           {/* Product Selection */}
           <div>
-            <label className="text-xs text-zinc-500 mb-2 block">Add Product</label>
+            <label className="text-xs text-zinc-500 mb-2 block">{t("addProductLabel")}</label>
             <ProductSelect
               value=""
               onChange={handleAddProduct}
@@ -135,7 +137,7 @@ export default function AddSaleModal() {
           {/* Line Items */}
           {lineItems.length > 0 && (
             <div className="space-y-2">
-              <label className="text-xs text-zinc-500">Items ({lineItems.length})</label>
+              <label className="text-xs text-zinc-500">{t("itemsLabel")} ({lineItems.length})</label>
               {lineItems.map((item) => (
                 <LineItemRow
                   key={item.id}
@@ -150,8 +152,8 @@ export default function AddSaleModal() {
           {lineItems.length === 0 && (
             <div className="flex flex-col items-center justify-center py-8 text-zinc-500 border border-dashed border-zinc-800 rounded-lg">
               <Package className="h-8 w-8 mb-2 text-zinc-700" />
-              <p className="text-sm">No items added yet</p>
-              <p className="text-xs text-zinc-600">Select a product above to start</p>
+              <p className="text-sm">{t("noItems")}</p>
+              <p className="text-xs text-zinc-600">{t("selectProductToStart")}</p>
             </div>
           )}
         </div>
@@ -161,15 +163,15 @@ export default function AddSaleModal() {
           <div className="border-t border-zinc-800 pt-4 mt-auto">
             <div className="space-y-2 mb-4">
               <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Subtotal</span>
+                <span className="text-zinc-400">{t("subtotal")}</span>
                 <span className="font-medium">৳{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Total Cost</span>
+                <span className="text-zinc-400">{t("totalCost")}</span>
                 <span className="text-zinc-500">৳{totalCost.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-zinc-400">Gross Profit</span>
+                <span className="text-zinc-400">{t("grossProfit")}</span>
                 <span className="text-emerald-500 font-semibold">৳{profit.toFixed(2)}</span>
               </div>
             </div>
@@ -196,7 +198,7 @@ export default function AddSaleModal() {
                 ) : (
                   <>
                     <ShoppingCart className="h-4 w-4" />
-                    Complete Sale
+                    {t("completeSale")}
                   </>
                 )}
               </button>

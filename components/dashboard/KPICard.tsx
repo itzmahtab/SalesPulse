@@ -8,9 +8,10 @@ interface KPICardProps {
   trend?: string;
   trendDirection?: 'up' | 'down' | 'neutral';
   icon: LucideIcon;
+  trendLabel?: string;
 }
 
-export function KPICard({ title, value, trend, trendDirection = 'neutral', icon: Icon }: KPICardProps) {
+export function KPICard({ title, value, trend, trendDirection = 'neutral', icon: Icon, trendLabel = 'vs last month' }: KPICardProps) {
   return (
     <div className="p-6 rounded-xl bg-zinc-900/40 border border-zinc-800 backdrop-blur-sm shadow-sm flex flex-col justify-between">
       <div className="flex items-center justify-between mb-4">
@@ -35,7 +36,7 @@ export function KPICard({ title, value, trend, trendDirection = 'neutral', icon:
             >
               {trend}
             </span>
-            <span className="text-xs text-zinc-500 ml-2">vs last month</span>
+            <span className="text-xs text-zinc-500 ml-2">{trendLabel}</span>
           </div>
         )}
       </div>

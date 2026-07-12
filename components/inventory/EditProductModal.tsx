@@ -7,6 +7,7 @@ import {
   Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger 
 } from "@/components/ui/dialog";
 import { Pencil, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Product {
   id: string;
@@ -27,6 +28,7 @@ interface EditProductModalProps {
 export default function EditProductModal({ product, onSuccess }: EditProductModalProps) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("inventory.editModal");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -50,17 +52,17 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
       <DialogTrigger asChild>
         <button className="text-xs text-zinc-500 hover:text-white transition-colors flex items-center gap-1">
           <Pencil className="h-3.5 w-3.5" />
-          Edit
+          {t("title")}
         </button>
       </DialogTrigger>
       <DialogContent className="bg-zinc-950 border-zinc-800 text-zinc-100">
         <DialogHeader>
-          <DialogTitle>Edit Product</DialogTitle>
+          <DialogTitle>{t("title")}</DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="col-span-2">
-              <label className="text-xs text-zinc-500 mb-1 block">Product Name</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("nameLabel")}</label>
               <input 
                 name="name" 
                 defaultValue={product.name}
@@ -69,7 +71,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
               />
             </div>
             <div>
-              <label className="text-xs text-zinc-500 mb-1 block">SKU</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("skuLabel")}</label>
               <input 
                 name="sku" 
                 defaultValue={product.sku}
@@ -78,7 +80,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
               />
             </div>
             <div>
-              <label className="text-xs text-zinc-500 mb-1 block">Category</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("categoryLabel")}</label>
               <input 
                 name="category" 
                 defaultValue={product.category || ""}
@@ -87,7 +89,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
               />
             </div>
             <div>
-              <label className="text-xs text-zinc-500 mb-1 block">Cost Price ($)</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("costPriceLabel")}</label>
               <input 
                 name="costPrice" 
                 type="number" 
@@ -98,7 +100,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
               />
             </div>
             <div>
-              <label className="text-xs text-zinc-500 mb-1 block">Sell Price ($)</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("sellPriceLabel")}</label>
               <input 
                 name="sellPrice" 
                 type="number" 
@@ -109,7 +111,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
               />
             </div>
             <div>
-              <label className="text-xs text-zinc-500 mb-1 block">Stock Quantity</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("stockLabel")}</label>
               <input 
                 name="stockQty" 
                 type="number" 
@@ -119,7 +121,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
               />
             </div>
             <div>
-              <label className="text-xs text-zinc-500 mb-1 block">Low Stock Alert</label>
+              <label className="text-xs text-zinc-500 mb-1 block">{t("lowStockAlertLabel")}</label>
               <input 
                 name="lowStockThreshold" 
                 type="number" 
@@ -135,7 +137,7 @@ export default function EditProductModal({ product, onSuccess }: EditProductModa
             className="w-full bg-indigo-600 p-2.5 rounded-md hover:bg-indigo-500 transition-colors font-medium disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
-            {loading ? "Saving..." : "Update Product"}
+            {loading ? t("saving") : t("updateProduct")}
           </button>
         </form>
       </DialogContent>

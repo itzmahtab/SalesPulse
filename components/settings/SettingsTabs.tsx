@@ -2,11 +2,12 @@
 'use client'
 
 import { User, Building2, CreditCard } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const tabs = [
-  { id: "profile", label: "Profile", icon: User },
-  { id: "business", label: "Business", icon: Building2 },
-  { id: "billing", label: "Billing", icon: CreditCard },
+  { id: "profile", labelKey: "profile", icon: User },
+  { id: "business", labelKey: "business", icon: Building2 },
+  { id: "billing", labelKey: "billing", icon: CreditCard },
 ];
 
 interface SettingsTabsProps {
@@ -15,6 +16,7 @@ interface SettingsTabsProps {
 }
 
 export function SettingsTabs({ activeTab, onTabChange }: SettingsTabsProps) {
+  const t = useTranslations("settings.tabs");
   return (
     <div className="flex gap-1 p-1 bg-zinc-900/50 rounded-lg w-fit">
       {tabs.map((tab) => {
@@ -30,7 +32,7 @@ export function SettingsTabs({ activeTab, onTabChange }: SettingsTabsProps) {
             }`}
           >
             <Icon className="h-4 w-4" />
-            {tab.label}
+            {t(tab.labelKey)}
           </button>
         );
       })}

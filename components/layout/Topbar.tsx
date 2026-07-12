@@ -8,6 +8,8 @@ import { Menu, LogOut, User as UserIcon, LayoutDashboard, ShoppingCart, Package,
 import { signOut } from 'next-auth/react'
 import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
+import { useTranslations } from 'next-intl'
+import LanguageToggle from './LanguageToggle'
 
 interface UserData {
   name?: string | null
@@ -27,6 +29,8 @@ const routes = [
 export default function Topbar({ user }: { user: UserData | null | undefined }) {
   const pathname = usePathname()
   const [open, setOpen] = useState(false)
+  const t = useTranslations('common')
+  const dashboardT = useTranslations('dashboard.topbar')
 
   return (
     <header className="h-16 flex items-center justify-between px-4 sm:px-6 border-b border-zinc-800 bg-zinc-900/50">
@@ -64,7 +68,7 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
                   )}
                 >
                   <Icon className="h-5 w-5" />
-                  {route.name}
+                  {t(`nav.${route.name.replace(' ', '').toLowerCase()}`)}
                 </Link>
               )
             })}
@@ -75,7 +79,7 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
               className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-zinc-400 hover:bg-rose-500/10 hover:text-rose-400 transition-colors w-full mt-4"
             >
               <LogOut className="h-5 w-5" />
-              Sign Out
+              {t('actions.signOut')}
             </button>
           </nav>
         </SheetContent>
@@ -86,10 +90,12 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
 
       {/* User Actions - Responsive */}
       <div className="flex items-center gap-2 sm:gap-4">
+        <LanguageToggle />
+
         {/* User Name & Role - Hidden on small screens */}
         <div className="hidden lg:flex flex-col items-end mr-2">
           <span className="text-sm font-medium text-zinc-200">{user?.name || 'User'}</span>
-          <span className="text-xs text-zinc-500 capitalize">{user?.role || 'Admin'}</span>
+          <span className="text-xs text-zinc-500 capitalize">{user?.role || dashboardT('userRole')}</span>
         </div>
         
         {/* User Name only on medium screens */}
@@ -106,7 +112,7 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
         <button 
           onClick={() => signOut({ callbackUrl: '/login' })}
           className="text-zinc-500 hover:text-rose-400 transition-colors p-2 rounded-md hover:bg-rose-500/10"
-          title="Sign out"
+          title={t('actions.signOut')}
         >
           <LogOut className="h-5 w-5" />
         </button>

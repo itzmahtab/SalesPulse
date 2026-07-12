@@ -7,6 +7,7 @@ import { useState, Suspense } from "react";
 import Link from "next/link";
 import { Loader2, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 function LoginForm() {
   const router = useRouter();
@@ -14,6 +15,7 @@ function LoginForm() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const t = useTranslations("auth.login");
 
   // Show a success message if they just came from the registration page
   const isRegistered = searchParams.get("registered") === "true";
@@ -34,12 +36,12 @@ function LoginForm() {
     });
 
     if (res?.error) {
-      setError("Invalid email or password.");
-      toast.error("Invalid email or password.");
+      setError(t("invalid"));
+      toast.error(t("invalid"));
       setLoading(false);
     } else {
       // Success! Push them to the dashboard shell.
-      toast.success("Logged in successfully!");
+      toast.success(t("success"));
       router.push("/dashboard");
     }
   }
@@ -47,14 +49,14 @@ function LoginForm() {
   return (
     <div className="w-full max-w-md p-8 border border-zinc-800 rounded-xl bg-zinc-900/50 shadow-2xl">
       <div className="mb-8 text-center">
-        <h1 className="text-2xl font-bold text-white mb-2">Welcome Back</h1>
-        <p className="text-sm text-zinc-400">Sign in to your SalesPulse dashboard.</p>
+        <h1 className="text-2xl font-bold text-white mb-2">{t("title")}</h1>
+        <p className="text-sm text-zinc-400">{t("subtitle")}</p>
       </div>
       
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {isRegistered && !error && (
           <div className="p-3 text-sm text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-md">
-            Account created successfully! Please log in.
+            {t("registeredMessage")}
           </div>
         )}
 
@@ -66,12 +68,12 @@ function LoginForm() {
         
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Email Address</label>
+            <label className="block text-sm font-medium text-zinc-400 mb-1">{t("emailLabel")}</label>
             <input name="email" type="email" required className="w-full p-2.5 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all" />
           </div>
 
           <div className="relative">
-            <label className="block text-sm font-medium text-zinc-400 mb-1">Password</label>
+            <label className="block text-sm font-medium text-zinc-400 mb-1">{t("passwordLabel")}</label>
             <input 
               name="password" 
               type={showPassword ? "text" : "password"} 
@@ -93,12 +95,12 @@ function LoginForm() {
           disabled={loading}
           className="w-full flex justify-center items-center bg-indigo-600 text-white p-2.5 rounded-md hover:bg-indigo-500 mt-4 font-medium transition-colors disabled:opacity-50"
         >
-          {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Signing in...</> : "Log In"}
+          {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t("signingIn")}</> : t("submitButton")}
         </button>
       </form>
 
       <p className="mt-6 text-center text-sm text-zinc-400">
-        Don&apos;t have an account? <Link href="/register" className="text-indigo-400 hover:text-indigo-300">Create one</Link>
+        {t("noAccount")} <Link href="/register" className="text-indigo-400 hover:text-indigo-300">{t("createOne")}</Link>
       </p>
     </div>
   );

@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { getAIInsights } from "@/app/actions/ai-insights";
 import { Send, Loader2, Sparkles, TrendingUp, Package, AlertCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface Message {
   role: "user" | "assistant";
@@ -16,15 +17,8 @@ interface Message {
   }>;
 }
 
-const suggestions = [
-  "Show me my revenue trends",
-  "What products are low in stock?",
-  "Who are my top customers?",
-  "What's my profit margin?",
-  "Compare this week to last week",
-];
-
 export default function AIChat() {
+  const t = useTranslations("ai");
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -44,7 +38,7 @@ export default function AIChat() {
       if (result.error) {
         setMessages((prev) => [
           ...prev,
-          { role: "assistant", content: `Error: ${result.error}` },
+          { role: "assistant", content: `${t("chat.errorPrefix")}: ${result.error}` },
         ]);
       } else if (result.success && result.insights) {
         const responseContent = result.insights.map((i) => i.insight).join("\n\n");
@@ -60,7 +54,7 @@ export default function AIChat() {
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: "assistant", content: "Sorry, I encountered an error. Please try again." },
+        { role: "assistant", content: t("chat.errorMessage") },
       ]);
     }
 
@@ -79,8 +73,8 @@ export default function AIChat() {
           <Sparkles className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h2 className="font-semibold text-zinc-100">AI Business Insights</h2>
-          <p className="text-xs text-zinc-500">Ask questions about your sales and inventory</p>
+          <h2 className="font-semibold text-zinc-100">{t("chat.headerTitle")}</h2>
+          <p className="text-xs text-zinc-500">{t("chat.headerSubtitle")}</p>
         </div>
       </div>
 
@@ -91,12 +85,12 @@ export default function AIChat() {
             <div className="h-16 w-16 rounded-full bg-indigo-500/10 flex items-center justify-center mb-4">
               <Sparkles className="h-8 w-8 text-indigo-500" />
             </div>
-            <h3 className="text-lg font-semibold text-zinc-200 mb-2">What would you like to know?</h3>
+            <h3 className="text-lg font-semibold text-zinc-200 mb-2">{t("chat.welcomeTitle")}</h3>
             <p className="text-zinc-500 text-sm mb-6 max-w-md">
-              Ask about your sales performance, inventory status, customer insights, or any business metrics.
+              {t("chat.welcomeDesc")}
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
-              {suggestions.map((suggestion) => (
+              {Object.values(t.raw("chat.suggestions") as Record<string, string>).map((suggestion) => (
                 <button
                   key={suggestion}
                   onClick={() => handleSuggestion(suggestion)}
@@ -124,7 +118,7 @@ export default function AIChat() {
               {message.role === "assistant" && (
                 <div className="flex items-center gap-2 mb-2">
                   <Sparkles className="h-4 w-4 text-indigo-400" />
-                  <span className="text-xs font-medium text-indigo-400">AI Insights</span>
+                  <span className="text-xs font-medium text-indigo-400">{t("chat.insightLabel")}</span>
                 </div>
               )}
               <div className="text-sm whitespace-pre-wrap">{message.content}</div>
@@ -163,15 +157,15 @@ export default function AIChat() {
                           {insight.type === "list" && (insight.data as { total?: number; lowStock?: unknown[]; outOfStock?: unknown[] }).lowStock && (
                             <div>
                               <div className="flex justify-between text-zinc-300 mb-1">
-                                <span>Total Products:</span>
+                                <span>{t("insightTypes.totalProducts")}:</span>
                                 <span className="font-medium">{(insight.data as { total: number }).total}</span>
                               </div>
                               <div className="flex justify-between text-amber-500 mb-1">
-                                <span>Low Stock:</span>
+                                <span>{t("insightTypes.lowStock")}:</span>
                                 <span className="font-medium">{(insight.data as { lowStock: unknown[] }).lowStock.length}</span>
                               </div>
                               <div className="flex justify-between text-rose-500 mb-1">
-                                <span>Out of Stock:</span>
+                                <span>{t("insightTypes.outOfStock")}:</span>
                                 <span className="font-medium">{(insight.data as { outOfStock: unknown[] }).outOfStock.length}</span>
                               </div>
                             </div>
@@ -190,7 +184,7 @@ export default function AIChat() {
           <div className="flex justify-start">
             <div className="bg-zinc-800 text-zinc-200 rounded-lg p-4 flex items-center gap-2">
               <Loader2 className="h-4 w-4 animate-spin text-indigo-400" />
-              <span className="text-sm">Analyzing your data...</span>
+              <span className="text-sm">{t("chat.analyzing")}</span>
             </div>
           </div>
         )}
@@ -203,7 +197,7 @@ export default function AIChat() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about your business..."
+            placeholder={t("chat.placeholder")}
             className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-500 outline-none focus:border-indigo-500 transition-colors"
           />
           <button

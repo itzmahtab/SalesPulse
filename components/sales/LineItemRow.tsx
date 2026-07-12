@@ -1,6 +1,5 @@
-'use client'
-
 import { X, AlertCircle } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface LineItem {
   id: string;
@@ -24,6 +23,7 @@ export default function LineItemRow({ item, onUpdate, onRemove }: LineItemRowPro
   const profit = (Number(item.unitPrice) - Number(item.costPrice)) * item.quantity;
   const isStockLow = item.quantity > item.stockQty;
   const isMaxStock = item.quantity >= item.stockQty;
+  const t = useTranslations("sales.addModal");
 
   return (
     <div className="flex items-start gap-3 p-3 bg-zinc-900/50 border border-zinc-800 rounded-lg">
@@ -34,7 +34,7 @@ export default function LineItemRow({ item, onUpdate, onRemove }: LineItemRowPro
 
       <div className="flex items-center gap-2">
         <div className="flex flex-col items-center">
-          <label className="text-[10px] text-zinc-500 mb-1">Qty</label>
+          <label className="text-[10px] text-zinc-500 mb-1">{t("qty")}</label>
           <div className="flex items-center gap-1">
             <button
               type="button"
@@ -67,7 +67,7 @@ export default function LineItemRow({ item, onUpdate, onRemove }: LineItemRowPro
           {isStockLow && (
             <p className="text-[10px] text-amber-500 mt-1 flex items-center gap-1">
               <AlertCircle className="h-3 w-3" />
-              Only {item.stockQty} left
+              {t("onlyLeft", { count: item.stockQty })}
             </p>
           )}
         </div>

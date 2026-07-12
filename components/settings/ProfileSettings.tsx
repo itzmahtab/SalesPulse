@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { updateUserProfile } from "@/app/actions/settings";
 import { User, Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface UserData {
   id: string;
@@ -14,6 +15,7 @@ interface UserData {
 
 export function ProfileSettings({ user }: { user: UserData | null }) {
   const [loading, setLoading] = useState(false);
+  const t = useTranslations("settings.profile");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,15 +32,15 @@ export function ProfileSettings({ user }: { user: UserData | null }) {
           <User className="h-8 w-8 text-indigo-400" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">Profile Settings</h3>
-          <p className="text-sm text-zinc-500">Update your personal information</p>
+          <h3 className="text-lg font-semibold text-zinc-100">{t("title")}</h3>
+          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">Full Name</label>
+            <label className="text-xs text-zinc-500 mb-1 block">{t("fullName")}</label>
             <input
               name="name"
               defaultValue={user?.name || ""}
@@ -47,7 +49,7 @@ export function ProfileSettings({ user }: { user: UserData | null }) {
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">Email</label>
+            <label className="text-xs text-zinc-500 mb-1 block">{t("email")}</label>
             <input
               name="email"
               type="email"
@@ -59,13 +61,13 @@ export function ProfileSettings({ user }: { user: UserData | null }) {
         </div>
 
         <div>
-          <label className="text-xs text-zinc-500 mb-1 block">Role</label>
+          <label className="text-xs text-zinc-500 mb-1 block">{t("role")}</label>
           <input
             value={user?.role || "user"}
             disabled
             className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md text-zinc-500 cursor-not-allowed"
           />
-          <p className="text-xs text-zinc-600 mt-1">Role cannot be changed</p>
+          <p className="text-xs text-zinc-600 mt-1">{t("roleWarning")}</p>
         </div>
 
         <button
@@ -74,7 +76,7 @@ export function ProfileSettings({ user }: { user: UserData | null }) {
           className="bg-indigo-600 hover:bg-indigo-500 px-6 py-2.5 rounded-md font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
         >
           {loading && <Loader2 className="h-4 w-4 animate-spin" />}
-          Save Changes
+          {loading ? t("saving") : t("save")}
         </button>
       </form>
     </div>

@@ -1,10 +1,11 @@
 // app/(dashboard)/sales/page.tsx
 import { db } from "@/lib/db";
-import { sales } from "@/lib/db/schema";
+import { sales, salesItems } from "@/lib/db/schema";
 import { auth } from "@/lib/auth";
-import { eq, desc } from "drizzle-orm";
-import { format } from "date-fns";
+import { eq, desc, count, sum } from "drizzle-orm";
+import { Plus, Search, FileText, Download } from "lucide-react";
 import AddSaleModal from "@/components/sales/AddSaleModal";
+import { getTranslations } from "next-intl/server";
 
 export default async function SalesPage() {
   const session = await auth();
@@ -14,45 +15,50 @@ export default async function SalesPage() {
     return <div>Unauthorized</div>;
   }
 
-  const businessSales = await db.query.sales.findMany({
-    where: eq(sales.businessId, businessId),
-    with: {
-      customer: true,
-      items: {
-        with: {
-          product: true,
-        },
-      },
-    },
-    orderBy: [desc(sales.createdAt)],
-  });
+  const t = await getTranslations("sales");
+
+  const businessSales = await db
+    .select({
+      id: sales.id,
+      invoiceNo: sales.invoiceNo,
+      customerName: sales.customerName,
+      totalAmount: sales.totalAmount,
+      profit: sales.profit,
+      createdAt: sales.createdAt,
+      status: sales.status,
+      itemsCount: count(salesItems.id),
+    })
+    .from(sales)
+    .leftJoin(salesItems, eq(sales.id, salesItems.saleId))
+    .where(eq(sales.businessId, businessId))
+    .groupBy(sales.id)
+    .orderBy(desc(sales.createdAt));
 
   const totalRevenue = businessSales.reduce((acc, s) => acc + Number(s.totalAmount), 0);
   const totalProfit = businessSales.reduce((acc, s) => acc + Number(s.profit), 0);
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">Sales Orders</h1>
-          <p className="text-zinc-400 text-sm">Track and manage your customer invoices.</p>
+          <h1 className="text-2xl font-bold text-zinc-100">{t("title")}</h1>
+          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
         </div>
         <AddSaleModal />
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">Total Sales</p>
-          <p className="text-xl font-bold">{businessSales.length}</p>
+        <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+          <p className="text-sm font-medium text-zinc-400 mb-1">{t("stats.totalSales")}</p>
+          <p className="text-2xl font-bold text-zinc-100">{businessSales.length}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">Total Revenue</p>
-          <p className="text-xl font-bold text-emerald-500">৳{totalRevenue.toFixed(2)}</p>
+        <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+          <p className="text-sm font-medium text-zinc-400 mb-1">{t("stats.totalRevenue")}</p>
+          <p className="text-2xl font-bold text-emerald-400">৳{totalRevenue.toLocaleString()}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">Total Profit</p>
-          <p className="text-xl font-bold text-indigo-500">৳{totalProfit.toFixed(2)}</p>
+        <div className="p-4 rounded-xl border border-zinc-800 bg-zinc-900/50">
+          <p className="text-sm font-medium text-zinc-400 mb-1">{t("stats.totalProfit")}</p>
+          <p className="text-2xl font-bold text-indigo-400">৳{totalProfit.toLocaleString()}</p>
         </div>
       </div>
 
@@ -61,38 +67,35 @@ export default async function SalesPage() {
         <table className="w-full text-left border-collapse">
           <thead className="bg-zinc-900/60 border-b border-zinc-800 text-zinc-400 text-xs uppercase">
             <tr>
-              <th className="px-6 py-4 font-medium">Invoice</th>
-              <th className="px-6 py-4 font-medium">Customer</th>
-              <th className="px-6 py-4 font-medium">Items</th>
-              <th className="px-6 py-4 font-medium">Date</th>
-              <th className="px-6 py-4 font-medium text-right">Amount</th>
-              <th className="px-6 py-4 font-medium text-right">Profit</th>
-              <th className="px-6 py-4 font-medium">Status</th>
+              <th className="px-6 py-4 font-medium">{t("table.invoice")}</th>
+              <th className="px-6 py-4 font-medium">{t("table.customer")}</th>
+              <th className="px-6 py-4 font-medium">{t("table.items")}</th>
+              <th className="px-6 py-4 font-medium">{t("table.date")}</th>
+              <th className="px-6 py-4 font-medium text-right">{t("table.amount")}</th>
+              <th className="px-6 py-4 font-medium text-right">{t("table.profit")}</th>
+              <th className="px-6 py-4 font-medium">{t("table.status")}</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-800">
             {businessSales.map((sale) => (
-              <tr key={sale.id} className="hover:bg-zinc-800/30 transition-colors">
-                <td className="px-6 py-4">
-                  <span className="font-mono text-sm text-indigo-400">{sale.invoiceNo}</span>
+              <tr key={sale.id} className="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors">
+                <td className="px-6 py-4 font-medium text-indigo-400">
+                  {sale.invoiceNo}
                 </td>
-                <td className="px-6 py-4 text-sm">
-                  <span className="text-zinc-200">{sale.customer?.name || "Walk-in Customer"}</span>
-                  {sale.customer?.phone && (
-                    <span className="text-xs text-zinc-500 ml-1">({sale.customer.phone})</span>
-                  )}
+                <td className="px-6 py-4 text-zinc-300">
+                  {sale.customerName || <span className="text-zinc-600 italic">{t("table.walkInCustomer")}</span>}
                 </td>
-                <td className="px-6 py-4 text-sm text-zinc-400">
-                  {sale.items.length} item{sale.items.length !== 1 ? "s" : ""}
+                <td className="px-6 py-4 text-zinc-400">
+                  {sale.itemsCount === 1 ? t("table.itemCount", { count: sale.itemsCount }) : t("table.itemsCount", { count: sale.itemsCount })}
                 </td>
-                <td className="px-6 py-4 text-sm text-zinc-400">
-                  {format(new Date(sale.createdAt), "MMM dd, yyyy")}
+                <td className="px-6 py-4 text-zinc-400">
+                  {new Date(sale.createdAt).toLocaleDateString()}
                 </td>
-                <td className="px-6 py-4 text-sm font-semibold text-zinc-100 text-right">
-                  ৳{Number(sale.totalAmount).toFixed(2)}
+                <td className="px-6 py-4 text-right font-medium text-zinc-100">
+                  ৳{Number(sale.totalAmount).toLocaleString()}
                 </td>
-                <td className="px-6 py-4 text-sm text-emerald-500 text-right">
-                  ৳{Number(sale.profit).toFixed(2)}
+                <td className="px-6 py-4 text-right text-emerald-500">
+                  ৳{Number(sale.profit).toLocaleString()}
                 </td>
                 <td className="px-6 py-4">
                   <span className={`text-[10px] uppercase tracking-wider font-bold px-2 py-1 rounded ${
@@ -110,7 +113,7 @@ export default async function SalesPage() {
             {businessSales.length === 0 && (
               <tr>
                 <td colSpan={7} className="px-6 py-12 text-center text-zinc-500 italic">
-                  No sales recorded yet. Start by creating your first sale!
+                  {t("table.noSales")}
                 </td>
               </tr>
             )}

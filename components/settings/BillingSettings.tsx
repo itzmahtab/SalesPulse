@@ -2,6 +2,7 @@
 'use client'
 
 import { CreditCard, Zap, Crown, Building } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const plans = [
   {
@@ -31,6 +32,7 @@ const plans = [
 ];
 
 export function BillingSettings({ currentPlan }: { currentPlan: string }) {
+  const t = useTranslations("settings.billing");
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
@@ -38,8 +40,8 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
           <CreditCard className="h-8 w-8 text-amber-400" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">Billing & Plans</h3>
-          <p className="text-sm text-zinc-500">Manage your subscription and billing</p>
+          <h3 className="text-lg font-semibold text-zinc-100">{t("title")}</h3>
+          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
         </div>
       </div>
 
@@ -63,13 +65,13 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
                 </div>
                 {isCurrent && (
                   <span className="text-xs bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-full">
-                    Current
+                    {t("current")}
                   </span>
                 )}
               </div>
               <div className="text-2xl font-bold text-zinc-100 mb-4">
                 {plan.price}
-                <span className="text-sm font-normal text-zinc-500">/month</span>
+                <span className="text-sm font-normal text-zinc-500">/{t("month")}</span>
               </div>
               <ul className="space-y-2">
                 {plan.features.map((feature, i) => (
@@ -81,7 +83,7 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
               </ul>
               {!isCurrent && (
                 <button className="w-full mt-4 py-2 border border-zinc-700 rounded-md text-sm text-zinc-300 hover:bg-zinc-800 transition-colors">
-                  Upgrade
+                  {t("upgrade")}
                 </button>
               )}
             </div>
@@ -90,8 +92,8 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
       </div>
 
       <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800">
-        <h4 className="font-medium text-zinc-100 mb-2">Billing History</h4>
-        <p className="text-sm text-zinc-500">No billing history available on Free plan.</p>
+        <h4 className="font-medium text-zinc-100 mb-2">{t("history")}</h4>
+        <p className="text-sm text-zinc-500">{t("noHistory")}</p>
       </div>
     </div>
   );
