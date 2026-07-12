@@ -79,8 +79,8 @@ export default function LandingPage() {
   return (
     <div className="relative min-h-screen bg-background selection:bg-indigo-500/30 overflow-x-hidden text-foreground">
 
-      {/* Ambient background orbs - dark mode */}
-      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden dark:block hidden">
+      {/* Ambient background orbs */}
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden block">
         <div className="absolute -top-48 -left-48 h-[600px] w-[600px] bg-indigo-500/10 blur-[150px] rounded-full" />
         <div className="absolute top-20 right-[-300px] h-[600px] w-[600px] bg-purple-500/8 blur-[150px] rounded-full" />
         <div className="absolute bottom-[-200px] left-1/3 h-[500px] w-[500px] bg-emerald-500/8 blur-[150px] rounded-full" />
@@ -446,8 +446,8 @@ export default function LandingPage() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="relative rounded-3xl border border-border bg-card/60 backdrop-blur-xl p-10 md:p-16 text-center overflow-hidden">
               {/* Background orbs */}
-              <div className="hidden dark:block absolute -top-20 -right-20 h-40 w-40 bg-indigo-500/20 blur-[80px] rounded-full pointer-events-none" />
-              <div className="hidden dark:block absolute -bottom-20 -left-20 h-40 w-40 bg-purple-500/20 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute -top-20 -right-20 h-40 w-40 bg-indigo-500/20 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute -bottom-20 -left-20 h-40 w-40 bg-purple-500/20 blur-[80px] rounded-full pointer-events-none" />
 
               <div className="relative z-10">
                 <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-foreground mb-4 max-w-3xl mx-auto">
