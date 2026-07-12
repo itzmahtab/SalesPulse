@@ -10,6 +10,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetHeader, SheetTitle } from '@/co
 import { cn } from '@/lib/utils'
 import { useTranslations } from 'next-intl'
 import LanguageToggle from './LanguageToggle'
+import ModeToggle from '@/components/ModeToggle'
 
 interface UserData {
   name?: string | null
@@ -90,6 +91,7 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
 
       {/* User Actions - Responsive */}
       <div className="flex items-center gap-2 sm:gap-4">
+        <ModeToggle />
         <LanguageToggle />
 
         {/* User Name & Role - Hidden on small screens */}
