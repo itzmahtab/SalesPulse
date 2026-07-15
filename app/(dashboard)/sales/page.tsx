@@ -1,6 +1,6 @@
 // app/(dashboard)/sales/page.tsx
 import { db } from "@/lib/db";
-import { sales, saleItems } from "@/lib/db/schema";
+import { sales, saleItems, customers } from "@/lib/db/schema";
 import { auth } from "@/lib/auth";
 import { eq, desc, count, sum } from "drizzle-orm";
 import { Plus, Search, FileText, Download } from "lucide-react";
@@ -21,7 +21,7 @@ export default async function SalesPage() {
     .select({
       id: sales.id,
       invoiceNo: sales.invoiceNo,
-      customerName: sales.customerName,
+      customerName: customers.name,
       totalAmount: sales.totalAmount,
       profit: sales.profit,
       createdAt: sales.createdAt,
@@ -30,6 +30,7 @@ export default async function SalesPage() {
     })
     .from(sales)
     .leftJoin(saleItems, eq(sales.id, saleItems.saleId))
+    .leftJoin(customers, eq(sales.customerId, customers.id))
     .where(eq(sales.businessId, businessId))
     .groupBy(sales.id)
     .orderBy(desc(sales.createdAt));
