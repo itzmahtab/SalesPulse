@@ -24,33 +24,90 @@
   },
   "landing": {
     "hero": {
-      "badge": "Next-Gen AI Sales Intelligence",
+      "badge": "AI-Powered Sales Intelligence",
       "titlePart1": "Your Sales Data.",
       "titlePart2": "Now with a Pulse.",
-      "subtitle": "The AI-driven dashboard that doesn't just show you numbers—it tells you what they mean. Track inventory, forecast revenue, and talk to your data."
+      "subtitle": "The AI-driven dashboard that doesn't just show you numbers — it tells you what they mean. Track inventory, forecast revenue, and talk to your data in plain English."
     },
     "nav": {
+      "features": "Features",
+      "testimonials": "Testimonials",
+      "pricing": "Pricing",
       "signIn": "Sign In",
       "getStarted": "Get Started"
     },
     "buttons": {
       "getStartedFree": "Get Started Free",
-      "liveDemo": "Live Demo"
+      "liveDemo": "Live Demo",
+      "startTrial": "Start Free Trial",
+      "learnMore": "Learn More"
     },
     "preview": "Dashboard Interface Preview",
+    "trustedBy": "Trusted by innovative teams worldwide",
+    "stats": {
+      "revenue": "Revenue Processed",
+      "users": "Active Users",
+      "responses": "AI Responses",
+      "uptime": "Uptime"
+    },
     "features": {
       "aiInsights": {
         "title": "AI Business Insights",
-        "desc": "Natural language queries for your inventory and sales performance."
+        "desc": "Ask natural language questions about your inventory, sales, and customers. Get instant answers powered by Llama 3.3."
       },
       "realTime": {
-        "title": "Real-time Tracking",
-        "desc": "Instant updates across all your business locations and channels."
+        "title": "Real-time Sync",
+        "desc": "Every sale, stock change, and customer update reflects instantly across your team — no manual refreshing required."
       },
       "visualGrowth": {
-        "title": "Visual Growth",
-        "desc": "Interactive reports and forecasting powered by Llama 3.3."
+        "title": "Visual Analytics",
+        "desc": "Interactive charts and revenue forecasts that help you spot trends before they become obvious."
+      },
+      "inventory": {
+        "title": "Smart Inventory",
+        "desc": "Low stock alerts, automated reorder suggestions, and multi-location tracking to keep your business running."
+      },
+      "multiCurrency": {
+        "title": "Multi-currency Support",
+        "desc": "Handle sales in any currency with automatic conversion and unified reporting across all your markets."
+      },
+      "team": {
+        "title": "Team Collaboration",
+        "desc": "Role-based access, shared dashboards, and real-time collaboration tools for your entire sales team."
       }
+    },
+    "testimonial": {
+      "quote": "\"SalesPulse completely changed how we understand our sales data. The AI insights alone save us hours every week. It's like having a data analyst on every desk.\"",
+      "name": "Sarah Chen",
+      "role": "VP of Sales, TechFlow Inc."
+    },
+    "cta": {
+      "title": "Ready to transform your sales intelligence?",
+      "subtitle": "Join thousands of businesses using SalesPulse to grow smarter. No credit card required.",
+      "button": "Start Free Trial"
+    },
+    "footer": {
+      "product": "Product",
+      "company": "Company",
+      "legal": "Legal",
+      "resources": "Resources",
+      "features": "Features",
+      "pricing": "Pricing",
+      "integrations": "Integrations",
+      "changelog": "Changelog",
+      "about": "About",
+      "blog": "Blog",
+      "careers": "Careers",
+      "contact": "Contact",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookie": "Cookie Policy",
+      "docs": "Documentation",
+      "api": "API Reference",
+      "help": "Help Center",
+      "status": "System Status",
+      "copyright": "© 2026 SalesPulse. All rights reserved.",
+      "tagline": "AI-driven sales intelligence for modern businesses."
     }
   },
   "auth": {

@@ -32,7 +32,7 @@ export default async function SalesPage() {
     .leftJoin(saleItems, eq(sales.id, saleItems.saleId))
     .leftJoin(customers, eq(sales.customerId, customers.id))
     .where(eq(sales.businessId, businessId))
-    .groupBy(sales.id)
+    .groupBy(sales.id, customers.name)
     .orderBy(desc(sales.createdAt));
 
   const totalRevenue = businessSales.reduce((acc, s) => acc + Number(s.totalAmount), 0);
