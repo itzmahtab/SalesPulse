@@ -95,12 +95,12 @@ export function RevenueChart({ data }: RevenueChartProps) {
       </ResponsiveContainer>
       <div className="flex items-center justify-center gap-6 mt-4">
         <div className="flex items-center gap-2">
-          <div className="w-3 h-3 rounded-full bg-indigo-500" />
-          <span className="text-xs text-zinc-400">{t("revenue")}</span>
+          <div className="w-3 h-3 rounded-full bg-primary" />
+          <span className="text-xs text-muted-foreground">{t("revenue")}</span>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-emerald-500" />
-          <span className="text-xs text-zinc-400">{t("profit")}</span>
+          <span className="text-xs text-muted-foreground">{t("profit")}</span>
         </div>
       </div>
     </div>

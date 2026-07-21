@@ -29,10 +29,10 @@ export default function LanguageToggle() {
       disabled={isPending}
       className={cn(
         "flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all text-sm font-medium",
-        isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-zinc-800/50",
+        isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-accent",
         currentLocale === 'en' 
-          ? "border-zinc-800 bg-zinc-900/50 text-zinc-300" 
-          : "border-indigo-500/30 bg-indigo-500/10 text-indigo-400"
+          ? "border-border bg-card text-foreground" 
+          : "border-primary/30 bg-primary/10 text-primary"
       )}
       title="Toggle Language"
     >

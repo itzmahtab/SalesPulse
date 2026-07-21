@@ -40,8 +40,8 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
           <CreditCard className="h-8 w-8 text-amber-400" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">{t("title")}</h3>
-          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
+          <h3 className="text-lg font-semibold text-foreground">{t("title")}</h3>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
       </div>
 
@@ -54,36 +54,36 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
               key={plan.id}
               className={`p-4 rounded-xl border ${
                 isCurrent
-                  ? "bg-indigo-500/5 border-indigo-500/30"
-                  : "bg-zinc-900/40 border-zinc-800"
+                  ? "bg-primary/5 border-primary/30"
+                  : "bg-card border-border"
               }`}
             >
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <Icon className={`h-5 w-5 ${isCurrent ? "text-indigo-400" : "text-zinc-400"}`} />
-                  <span className="font-semibold text-zinc-100">{plan.name}</span>
+                  <Icon className={`h-5 w-5 ${isCurrent ? "text-primary" : "text-muted-foreground"}`} />
+                  <span className="font-semibold text-foreground">{plan.name}</span>
                 </div>
                 {isCurrent && (
-                  <span className="text-xs bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded-full">
-                    {t("current")}
+                  <span className="text-xs bg-primary/20 text-primary px-2 py-0.5 rounded-full">
+                    {t("currentBadge")}
                   </span>
                 )}
               </div>
-              <div className="text-2xl font-bold text-zinc-100 mb-4">
+              <div className="text-2xl font-bold text-foreground mb-4">
                 {plan.price}
-                <span className="text-sm font-normal text-zinc-500">/{t("month")}</span>
+                <span className="text-sm font-normal text-muted-foreground">/{t("perMonth")}</span>
               </div>
               <ul className="space-y-2">
                 {plan.features.map((feature, i) => (
-                  <li key={i} className="text-sm text-zinc-400 flex items-center gap-2">
+                  <li key={i} className="text-sm text-muted-foreground flex items-center gap-2">
                     <div className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
                     {feature}
                   </li>
                 ))}
               </ul>
               {!isCurrent && (
-                <button className="w-full mt-4 py-2 border border-zinc-700 rounded-md text-sm text-zinc-300 hover:bg-zinc-800 transition-colors">
-                  {t("upgrade")}
+                <button className="w-full mt-4 py-2 border border-border rounded-md text-sm text-foreground hover:bg-accent transition-colors">
+                  {t("upgradeBtn")}
                 </button>
               )}
             </div>
@@ -91,9 +91,9 @@ export function BillingSettings({ currentPlan }: { currentPlan: string }) {
         })}
       </div>
 
-      <div className="p-4 rounded-xl bg-zinc-900/40 border border-zinc-800">
-        <h4 className="font-medium text-zinc-100 mb-2">{t("history")}</h4>
-        <p className="text-sm text-zinc-500">{t("noHistory")}</p>
+      <div className="p-4 rounded-xl bg-card border border-border">
+        <h4 className="font-medium text-foreground mb-2">{t("historyTitle")}</h4>
+        <p className="text-sm text-muted-foreground">{t("historyEmptyFree")}</p>
       </div>
     </div>
   );

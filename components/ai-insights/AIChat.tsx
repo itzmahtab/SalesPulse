@@ -66,15 +66,15 @@ export default function AIChat() {
   }
 
   return (
-    <div className="flex flex-col h-[calc(100vh-200px)] bg-zinc-900/40 border border-zinc-800 rounded-xl">
+    <div className="flex flex-col min-h-[400px] h-[calc(100vh-200px)] bg-background border border-border rounded-xl">
       {/* Header */}
-      <div className="flex items-center gap-3 p-4 border-b border-zinc-800">
+      <div className="flex items-center gap-3 p-4 border-b border-border">
         <div className="h-10 w-10 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center">
           <Sparkles className="h-5 w-5 text-white" />
         </div>
         <div>
-          <h2 className="font-semibold text-zinc-100">{t("chat.headerTitle")}</h2>
-          <p className="text-xs text-zinc-500">{t("chat.headerSubtitle")}</p>
+          <h2 className="font-semibold text-foreground">{t("chat.headerTitle")}</h2>
+          <p className="text-xs text-muted-foreground">{t("chat.headerSubtitle")}</p>
         </div>
       </div>
 
@@ -82,11 +82,11 @@ export default function AIChat() {
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {messages.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full text-center">
-            <div className="h-16 w-16 rounded-full bg-indigo-500/10 flex items-center justify-center mb-4">
-              <Sparkles className="h-8 w-8 text-indigo-500" />
+            <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+              <Sparkles className="h-8 w-8 text-primary" />
             </div>
-            <h3 className="text-lg font-semibold text-zinc-200 mb-2">{t("chat.welcomeTitle")}</h3>
-            <p className="text-zinc-500 text-sm mb-6 max-w-md">
+            <h3 className="text-lg font-semibold text-foreground mb-2">{t("chat.welcomeTitle")}</h3>
+            <p className="text-muted-foreground text-sm mb-6 max-w-md">
               {t("chat.welcomeDesc")}
             </p>
             <div className="flex flex-wrap gap-2 justify-center">
@@ -94,7 +94,7 @@ export default function AIChat() {
                 <button
                   key={suggestion}
                   onClick={() => handleSuggestion(suggestion)}
-                  className="px-3 py-1.5 text-xs bg-zinc-800 hover:bg-zinc-700 text-zinc-300 rounded-full border border-zinc-700 transition-colors"
+                  className="px-3 py-1.5 text-xs bg-muted hover:bg-secondary/80 text-foreground rounded-full border border-border transition-colors"
                 >
                   {suggestion}
                 </button>
@@ -111,14 +111,14 @@ export default function AIChat() {
             <div
               className={`max-w-[80%] rounded-lg p-4 ${
                 message.role === "user"
-                  ? "bg-indigo-600 text-white"
-                  : "bg-zinc-800 text-zinc-200"
+                  ? "bg-blue-600 text-white"
+                  : "bg-muted text-foreground"
               }`}
             >
               {message.role === "assistant" && (
                 <div className="flex items-center gap-2 mb-2">
-                  <Sparkles className="h-4 w-4 text-indigo-400" />
-                  <span className="text-xs font-medium text-indigo-400">{t("chat.insightLabel")}</span>
+                  <Sparkles className="h-4 w-4 text-primary" />
+                  <span className="text-xs font-medium text-primary">{t("chat.insightLabel")}</span>
                 </div>
               )}
               <div className="text-sm whitespace-pre-wrap">{message.content}</div>
@@ -128,22 +128,22 @@ export default function AIChat() {
                   {message.insights.map((insight, i) => (
                     <div
                       key={i}
-                      className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-700"
+                      className="p-3 bg-card rounded-lg border border-border"
                     >
                       <div className="flex items-center gap-2 mb-2">
                         {insight.type === "stat" && <TrendingUp className="h-4 w-4 text-emerald-500" />}
                         {insight.type === "list" && <Package className="h-4 w-4 text-amber-500" />}
                         {insight.type === "text" && <AlertCircle className="h-4 w-4 text-rose-500" />}
-                        <span className="text-xs font-medium text-zinc-400">{insight.title}</span>
+                        <span className="text-xs font-medium text-muted-foreground">{insight.title}</span>
                       </div>
                       {insight.data !== null && insight.data !== undefined && (
-                        <div className="text-xs text-zinc-500">
+                        <div className="text-xs text-muted-foreground">
                           {insight.type === "stat" && (
-                            <div className="grid grid-cols-3 gap-2">
+                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                               {Object.entries(insight.data as Record<string, number>).slice(0, 3).map(([key, val]) => (
                                 <div key={key} className="text-center">
-                                  <div className="text-zinc-400 capitalize">{key}</div>
-                                  <div className="font-semibold text-zinc-200">
+                                  <div className="text-muted-foreground capitalize">{key}</div>
+                                  <div className="font-semibold text-foreground">
                                     {typeof val === "number" && key !== "margin"
                                       ? `৳${val.toLocaleString(undefined, { maximumFractionDigits: 0 })}`
                                       : typeof val === "number"
@@ -156,7 +156,7 @@ export default function AIChat() {
                           )}
                           {insight.type === "list" && (insight.data as { total?: number; lowStock?: unknown[]; outOfStock?: unknown[] }).lowStock && (
                             <div>
-                              <div className="flex justify-between text-zinc-300 mb-1">
+                              <div className="flex justify-between text-foreground mb-1">
                                 <span>{t("insightTypes.totalProducts")}:</span>
                                 <span className="font-medium">{(insight.data as { total: number }).total}</span>
                               </div>
@@ -182,8 +182,8 @@ export default function AIChat() {
 
         {loading && (
           <div className="flex justify-start">
-            <div className="bg-zinc-800 text-zinc-200 rounded-lg p-4 flex items-center gap-2">
-              <Loader2 className="h-4 w-4 animate-spin text-indigo-400" />
+            <div className="bg-muted text-foreground rounded-lg p-4 flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin text-primary" />
               <span className="text-sm">{t("chat.analyzing")}</span>
             </div>
           </div>
@@ -191,19 +191,19 @@ export default function AIChat() {
       </div>
 
       {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 border-t border-zinc-800">
+      <form onSubmit={handleSubmit} className="p-4 border-t border-border">
         <div className="flex gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder={t("chat.placeholder")}
-            className="flex-1 bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-2.5 text-sm text-zinc-200 placeholder:text-zinc-500 outline-none focus:border-indigo-500 transition-colors"
+            className="flex-1 bg-background border border-input rounded-lg px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary transition-colors"
           />
           <button
             type="submit"
             disabled={!input.trim() || loading}
-            className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors"
+            className="px-4 py-2.5 bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition-colors"
           >
             {loading ? (
               <Loader2 className="h-5 w-5 animate-spin" />

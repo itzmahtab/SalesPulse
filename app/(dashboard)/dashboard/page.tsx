@@ -1,4 +1,3 @@
-
 // app/(dashboard)/dashboard/page.tsx
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -51,8 +50,8 @@ export default async function DashboardPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">{t("overview.title")}</h1>
-        <p className="text-sm text-zinc-500">{t("overview.subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("overview.title")}</h1>
+        <p className="text-sm text-muted-foreground">{t("overview.subtitle")}</p>
       </div>
 
       {/* KPI Grid */}
@@ -89,25 +88,25 @@ export default async function DashboardPage() {
 
       {/* Secondary Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.totalProducts")}</p>
-          <p className="text-xl font-bold">{businessProducts.length}</p>
+        <div className="p-4 rounded-lg bg-card border border-border">
+          <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.totalProducts")}</p>
+          <p className="text-xl font-bold text-foreground">{businessProducts.length}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.totalCustomers")}</p>
-          <p className="text-xl font-bold">{businessCustomers.length}</p>
+        <div className="p-4 rounded-lg bg-card border border-border">
+          <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.totalCustomers")}</p>
+          <p className="text-xl font-bold text-foreground">{businessCustomers.length}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
-          <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.lowStock")}</p>
+        <div className="p-4 rounded-lg bg-card border border-border">
+          <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.lowStock")}</p>
           <p className="text-xl font-bold text-amber-500">{lowStockProducts.length}</p>
         </div>
       </div>
 
       {/* Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 p-6 rounded-xl border border-zinc-800 bg-zinc-900/50 flex flex-col">
+        <div className="lg:col-span-2 p-6 rounded-xl border border-border bg-card flex flex-col">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="font-semibold text-zinc-100">{t("charts.revenueTrend")}</h3>
+            <h3 className="font-semibold text-foreground">{t("charts.revenueTrend")}</h3>
           </div>
           <div className="flex-1 min-h-[300px]">
             <RevenueChart data={revenueData} />
@@ -115,8 +114,8 @@ export default async function DashboardPage() {
         </div>
 
         <div className="space-y-6">
-          <div className="p-6 rounded-xl border border-zinc-800 bg-zinc-900/50">
-            <h3 className="font-semibold text-zinc-100 mb-6">{t("charts.salesByCategory")}</h3>
+          <div className="p-6 rounded-xl border border-border bg-card">
+            <h3 className="font-semibold text-foreground mb-6">{t("charts.salesByCategory")}</h3>
             <CategoryChart data={categoryData} />
           </div>
         </div>

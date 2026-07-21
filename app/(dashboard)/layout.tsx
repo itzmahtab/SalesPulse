@@ -17,7 +17,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex h-screen bg-zinc-950 text-zinc-100 overflow-hidden font-sans">
+    <div className="flex h-screen bg-background text-foreground overflow-hidden font-sans">
       {/* Desktop Sidebar */}
       <Sidebar />
       
@@ -25,7 +25,7 @@ export default async function DashboardLayout({
       <div className="flex flex-col flex-1 overflow-hidden">
         <Topbar user={session.user} />
         
-        <main className="flex-1 overflow-y-auto bg-zinc-950 p-6 md:p-8">
+        <main className="flex-1 overflow-y-auto bg-background p-4 sm:p-6 md:p-8">
           <div className="max-w-7xl mx-auto">
             {children}
           </div>

@@ -47,10 +47,10 @@ function LoginForm() {
   }
 
   return (
-    <div className="w-full max-w-md p-8 border border-zinc-800 rounded-xl bg-zinc-900/50 shadow-2xl">
+    <div className="w-full max-w-md p-8 border border-border rounded-xl bg-card shadow-2xl">
       <div className="mb-8 text-center">
         <h1 className="text-2xl font-bold text-white mb-2">{t("title")}</h1>
-        <p className="text-sm text-zinc-400">{t("subtitle")}</p>
+        <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
       
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -68,22 +68,22 @@ function LoginForm() {
         
         <div className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-zinc-400 mb-1">{t("emailLabel")}</label>
-            <input name="email" type="email" required className="w-full p-2.5 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all" />
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("emailLabel")}</label>
+            <input name="email" type="email" required className="w-full p-2.5 rounded-md bg-background border border-input text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" />
           </div>
 
           <div className="relative">
-            <label className="block text-sm font-medium text-zinc-400 mb-1">{t("passwordLabel")}</label>
+            <label className="block text-sm font-medium text-muted-foreground mb-1">{t("passwordLabel")}</label>
             <input 
               name="password" 
               type={showPassword ? "text" : "password"} 
               required 
-              className="w-full p-2.5 pr-10 rounded-md bg-zinc-950 border border-zinc-800 text-zinc-100 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none transition-all" 
+              className="w-full p-2.5 pr-10 rounded-md bg-background border border-input text-foreground focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" 
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-8 text-zinc-500 hover:text-zinc-300 transition-colors"
+              className="absolute right-3 top-8 text-muted-foreground hover:text-foreground transition-colors"
             >
               {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
             </button>
@@ -93,14 +93,14 @@ function LoginForm() {
         <button 
           type="submit" 
           disabled={loading}
-          className="w-full flex justify-center items-center bg-indigo-600 text-white p-2.5 rounded-md hover:bg-indigo-500 mt-4 font-medium transition-colors disabled:opacity-50"
+          className="w-full flex justify-center items-center bg-primary text-primary-foreground p-2.5 rounded-md hover:bg-primary/90 mt-4 font-medium transition-colors disabled:opacity-50"
         >
           {loading ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> {t("signingIn")}</> : t("submitButton")}
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-zinc-400">
-        {t("noAccount")} <Link href="/register" className="text-indigo-400 hover:text-indigo-300">{t("createOne")}</Link>
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        {t("noAccount")} <Link href="/register" className="text-primary hover:text-primary/80">{t("createOne")}</Link>
       </p>
     </div>
   );
@@ -108,9 +108,9 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-950 text-zinc-100 p-4">
+    <div className="flex min-h-screen items-center justify-center bg-background text-foreground p-4">
       {/* We wrap the form in Suspense because we are using useSearchParams() */}
-      <Suspense fallback={<div className="text-zinc-500">Loading...</div>}>
+      <Suspense fallback={<div className="text-muted-foreground">Loading...</div>}>
         <LoginForm />
       </Suspense>
     </div>

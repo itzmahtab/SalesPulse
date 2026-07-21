@@ -7,8 +7,8 @@ export default async function AIInsightsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">{t("title")}</h1>
-        <p className="text-zinc-400 text-sm">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="text-muted-foreground text-sm">{t("subtitle")}</p>
       </div>
       
       <AIChat />

@@ -19,7 +19,7 @@ interface SettingsTabsProps {
 export function SettingsTabs({ activeTab, onTabChange }: SettingsTabsProps) {
   const t = useTranslations("settings.tabs");
   return (
-    <div className="flex gap-1 p-1 bg-zinc-900/50 rounded-lg w-fit">
+    <div className="flex gap-1 p-1 bg-card rounded-lg w-fit overflow-x-auto">
       {tabs.map((tab) => {
         const Icon = tab.icon;
         return (
@@ -28,8 +28,8 @@ export function SettingsTabs({ activeTab, onTabChange }: SettingsTabsProps) {
             onClick={() => onTabChange(tab.id)}
             className={`flex items-center gap-2 px-4 py-2 rounded-md text-sm font-medium transition-colors ${
               activeTab === tab.id
-                ? "bg-zinc-800 text-white"
-                : "text-zinc-400 hover:text-zinc-200"
+                ? "bg-accent text-foreground"
+                : "text-muted-foreground hover:text-foreground"
             }`}
           >
             <Icon className="h-4 w-4" />

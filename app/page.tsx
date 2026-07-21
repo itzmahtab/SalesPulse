@@ -27,7 +27,6 @@ const footerSections = [
     titleKey: "product",
     links: [
       { labelKey: "features", href: "#features" },
-      { labelKey: "pricing", href: "#" },
       { labelKey: "integrations", href: "#" },
       { labelKey: "changelog", href: "#" },
     ],
@@ -100,9 +99,6 @@ export default function LandingPage() {
             </Link>
             <Link href="#testimonials" className="text-muted-foreground hover:text-foreground transition-colors">
               {t("nav.testimonials")}
-            </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              {t("nav.pricing")}
             </Link>
           </div>
           <div className="flex items-center gap-2 ml-2">
