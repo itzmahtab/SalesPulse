@@ -62,7 +62,7 @@ export function CategoryChart({ data }: CategoryChartProps) {
             }}
           />
           <Legend
-            formatter={(value) => <span className="text-zinc-400 text-xs">{value}</span>}
+            formatter={(value) => <span className="text-muted-foreground text-xs">{value}</span>}
             iconType="circle"
             iconSize={8}
           />

@@ -28,52 +28,52 @@ export function ProfileSettings({ user }: { user: UserData | null }) {
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-4">
-        <div className="h-16 w-16 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
-          <User className="h-8 w-8 text-indigo-400" />
+        <div className="h-16 w-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
+          <User className="h-8 w-8 text-primary" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">{t("title")}</h3>
-          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
+          <h3 className="text-lg font-semibold text-foreground">{t("title")}</h3>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">{t("fullName")}</label>
+            <label className="text-xs text-muted-foreground mb-1 block">{t("fullName")}</label>
             <input
               name="name"
               defaultValue={user?.name || ""}
               required
-              className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md outline-none focus:border-indigo-500"
+              className="w-full bg-background border border-input p-2.5 rounded-md outline-none focus:border-primary"
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">{t("email")}</label>
+            <label className="text-xs text-muted-foreground mb-1 block">{t("email")}</label>
             <input
               name="email"
               type="email"
               defaultValue={user?.email || ""}
               required
-              className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md outline-none focus:border-indigo-500"
+              className="w-full bg-background border border-input p-2.5 rounded-md outline-none focus:border-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="text-xs text-zinc-500 mb-1 block">{t("role")}</label>
+          <label className="text-xs text-muted-foreground mb-1 block">{t("role")}</label>
           <input
             value={user?.role || "user"}
             disabled
-            className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md text-zinc-500 cursor-not-allowed"
+            className="w-full bg-muted border border-border p-2.5 rounded-md text-muted-foreground cursor-not-allowed"
           />
-          <p className="text-xs text-zinc-600 mt-1">{t("roleWarning")}</p>
+          <p className="text-xs text-muted-foreground mt-1">{t("roleHint")}</p>
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="bg-indigo-600 hover:bg-indigo-500 px-6 py-2.5 rounded-md font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
+          className="bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 px-6 py-2.5 rounded-md font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
         >
           {loading && <Loader2 className="h-4 w-4 animate-spin" />}
           {loading ? t("saving") : t("save")}

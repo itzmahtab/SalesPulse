@@ -18,7 +18,7 @@ export default function CopyIdButton({ id }: { id: string }) {
   return (
     <button 
       onClick={handleCopy}
-      className="text-[10px] bg-zinc-800 text-zinc-400 px-2 py-1 rounded hover:text-white transition-colors flex items-center gap-1 ml-auto"
+      className="text-[10px] bg-accent text-muted-foreground px-2 py-1 rounded hover:text-foreground transition-colors flex items-center gap-1 ml-auto"
     >
       {copied ? <Check className="h-3 w-3 text-emerald-500" /> : <Copy className="h-3 w-3" />}
       {copied ? t("copied") : t("id")}

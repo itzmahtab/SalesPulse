@@ -6,7 +6,7 @@
       "inventory": "Inventory",
       "customers": "Customers",
       "reports": "Reports",
-      "aiInsights": "AI Insights",
+      "aiinsights": "AI Insights",
       "settings": "Settings"
     },
     "actions": {
@@ -229,6 +229,12 @@
     "title": "Inventory",
     "subtitle": "Manage your products and stock levels.",
     "addProduct": "Add Product",
+    "productSelect": {
+      "searchPlaceholder": "Search products...",
+      "selectProduct": "Select a product...",
+      "noProducts": "No products found",
+      "inStock": "in stock"
+    },
     "stats": {
       "totalProducts": "Total Products",
       "lowStockItems": "Low Stock Items",
@@ -286,7 +292,8 @@
     "stats": {
       "totalCustomers": "Total Customers",
       "totalOrders": "Total Orders",
-      "totalRevenue": "Total Revenue from Customers"
+      "totalRevenue": "Total Revenue from Customers",
+      "avgOrderValue": "Avg. Order Value"
     },
     "table": {
       "customer": "Customer",
@@ -296,7 +303,8 @@
       "actions": "Actions",
       "joined": "Joined",
       "noContactInfo": "No contact info",
-      "noCustomers": "No customers found. Add your first customer to get started."
+      "noCustomers": "No customers found. Add your first customer to get started.",
+      "searchPlaceholder": "Search customers..."
     },
     "deleteModal": {
       "title": "Delete Customer",
@@ -385,7 +393,9 @@
       "fullName": "Full Name",
       "email": "Email",
       "role": "Role",
-      "roleHint": "Role cannot be changed"
+      "roleHint": "Role cannot be changed",
+      "save": "Save",
+      "saving": "Saving..."
     },
     "business": {
       "title": "Business Settings",
@@ -394,7 +404,9 @@
       "businessSlug": "Business URL Slug",
       "slugHint": "Only lowercase letters, numbers, and hyphens",
       "currentPlan": "Current Plan",
-      "upgradeToPro": "Upgrade to Pro →"
+      "upgradeToPro": "Upgrade to Pro →",
+      "save": "Save",
+      "saving": "Saving..."
     },
     "billing": {
       "title": "Billing & Plans",

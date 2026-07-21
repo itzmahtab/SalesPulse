@@ -46,52 +46,52 @@ export default function EditCustomerModal({ customer, onSuccess }: EditCustomerM
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="text-xs text-zinc-500 hover:text-white transition-colors flex items-center gap-1">
+        <button className="text-xs text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1">
           <Pencil className="h-3.5 w-3.5" />
           {t("title")}
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="bg-card border-border text-foreground">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
-            <User className="h-5 w-5 text-indigo-400" />
+            <User className="h-5 w-5 text-primary" />
             {t("title")}
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4 py-4">
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">{t("fullName")}</label>
+            <label className="text-xs text-muted-foreground mb-1 block">{t("fullName")}</label>
             <input 
               name="name" 
               required 
               defaultValue={customer.name}
-              className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md outline-none focus:border-indigo-500" 
+              className="w-full bg-background border border-input p-2.5 rounded-md outline-none focus:border-primary" 
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">{t("email")}</label>
+            <label className="text-xs text-muted-foreground mb-1 block">{t("email")}</label>
             <input 
               name="email" 
               type="email"
               defaultValue={customer.email || ""}
               placeholder="john@example.com"
-              className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md outline-none focus:border-indigo-500" 
+              className="w-full bg-background border border-input p-2.5 rounded-md outline-none focus:border-primary" 
             />
           </div>
           <div>
-            <label className="text-xs text-zinc-500 mb-1 block">{t("phone")}</label>
+            <label className="text-xs text-muted-foreground mb-1 block">{t("phone")}</label>
             <input 
               name="phone" 
               type="tel"
               defaultValue={customer.phone || ""}
               placeholder="+880 1XXX XXXXXX"
-              className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md outline-none focus:border-indigo-500" 
+              className="w-full bg-background border border-input p-2.5 rounded-md outline-none focus:border-primary" 
             />
           </div>
           <button 
             type="submit" 
             disabled={loading}
-            className="w-full bg-indigo-600 p-2.5 rounded-md hover:bg-indigo-500 transition-colors font-medium disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full bg-primary p-2.5 rounded-md hover:bg-primary/90 transition-colors font-medium disabled:opacity-50 flex items-center justify-center gap-2"
           >
             {loading && <Loader2 className="h-4 w-4 animate-spin" />}
             {loading ? t("saving") : t("save")}

@@ -34,24 +34,24 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
   const dashboardT = useTranslations('dashboard.topbar')
 
   return (
-    <header className="h-16 flex items-center justify-between px-4 sm:px-6 border-b border-zinc-800 bg-zinc-900/50">
+    <header className="h-16 flex items-center justify-between px-4 sm:px-6 border-b border-border bg-card/50">
       
       {/* Mobile Menu Button with Sheet */}
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
-          <button className="md:hidden text-zinc-400 hover:text-zinc-100 transition-colors p-2">
+          <button aria-label="Open navigation menu" className="md:hidden text-muted-foreground hover:text-foreground transition-colors p-2">
             <Menu className="h-6 w-6" />
           </button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-72 bg-zinc-900 border-zinc-800 p-0">
-          <SheetHeader className="h-16 flex items-center px-6 border-b border-zinc-800">
-            <SheetTitle className="text-zinc-100 flex items-center gap-2 text-lg font-bold">
-              <span className="text-indigo-500">SalesPulse</span>
+        <SheetContent side="left" className="w-72 bg-card border-border p-0">
+          <SheetHeader className="h-16 flex items-center px-6 border-b border-border">
+            <SheetTitle className="text-foreground flex items-center gap-2 text-lg font-bold">
+              <span className="text-primary">SalesPulse</span>
             </SheetTitle>
           </SheetHeader>
           
           {/* Mobile Navigation Links */}
-          <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
+          <nav aria-label="Mobile navigation" className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
             {routes.map((route) => {
               const isActive = pathname === route.path || pathname.startsWith(route.path)
               const Icon = route.icon
@@ -61,11 +61,12 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
                   key={route.path}
                   href={route.path}
                   onClick={() => setOpen(false)}
+                  aria-current={isActive ? 'page' : undefined}
                   className={cn(
                     "flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
                     isActive 
-                      ? "bg-indigo-500/10 text-indigo-400" 
-                      : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-100"
+                      ? "bg-primary/10 text-primary" 
+                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
                   )}
                 >
                   <Icon className="h-5 w-5" />
@@ -77,7 +78,7 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
             {/* Mobile Logout Button */}
             <button 
               onClick={() => signOut({ callbackUrl: '/login' })}
-              className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-zinc-400 hover:bg-rose-500/10 hover:text-rose-400 transition-colors w-full mt-4"
+              className="flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition-colors w-full mt-4"
             >
               <LogOut className="h-5 w-5" />
               {t('actions.signOut')}
@@ -94,27 +95,22 @@ export default function Topbar({ user }: { user: UserData | null | undefined }) 
         <ModeToggle />
         <LanguageToggle />
 
-        {/* User Name & Role - Hidden on small screens */}
-        <div className="hidden lg:flex flex-col items-end mr-2">
-          <span className="text-sm font-medium text-zinc-200">{user?.name || 'User'}</span>
-          <span className="text-xs text-zinc-500 capitalize">{user?.role || dashboardT('userRole')}</span>
-        </div>
-        
-        {/* User Name only on medium screens */}
-        <div className="hidden sm:flex lg:hidden flex-col items-end mr-2">
-          <span className="text-sm font-medium text-zinc-200">{user?.name || 'User'}</span>
+        {/* User Name & Role */}
+        <div className="hidden sm:flex flex-col items-end mr-2">
+          <span className="text-sm font-medium text-foreground">{user?.name || 'User'}</span>
+          <span className="text-xs text-muted-foreground capitalize">{user?.role || dashboardT('userRole')}</span>
         </div>
         
         {/* Profile Icon - Link to Settings */}
-        <Link href="/settings" className="h-8 w-8 rounded-full bg-zinc-800 flex items-center justify-center border border-zinc-700 hover:border-indigo-500 transition-colors">
-          <UserIcon className="h-4 w-4 text-zinc-400" />
+        <Link href="/settings" aria-label="Settings" className="h-8 w-8 rounded-full bg-muted flex items-center justify-center border border-border hover:border-primary transition-colors">
+          <UserIcon className="h-4 w-4 text-muted-foreground" />
         </Link>
 
-        {/* Logout Button - Hidden on extra small, icon only on small */}
+        {/* Logout Button */}
         <button 
           onClick={() => signOut({ callbackUrl: '/login' })}
-          className="text-zinc-500 hover:text-rose-400 transition-colors p-2 rounded-md hover:bg-rose-500/10"
-          title={t('actions.signOut')}
+          aria-label={t('actions.signOut')}
+          className="text-muted-foreground hover:text-destructive transition-colors p-2 rounded-md hover:bg-destructive/10"
         >
           <LogOut className="h-5 w-5" />
         </button>

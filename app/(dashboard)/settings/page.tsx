@@ -10,8 +10,8 @@ export default async function SettingsPage() {
   if ('error' in result) {
     return (
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-zinc-100">{t("title")}</h1>
-        <p className="text-zinc-400">{t("error")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("errorMsg")}</p>
       </div>
     );
   }
@@ -19,11 +19,11 @@ export default async function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">{t("title")}</h1>
-        <p className="text-zinc-400 text-sm">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="text-muted-foreground text-sm">{t("subtitle")}</p>
       </div>
 
-      <div className="rounded-xl border border-zinc-800 bg-zinc-900/20 p-6">
+      <div className="rounded-xl border border-border bg-card p-6">
         <SettingsClient data={result} />
       </div>
     </div>

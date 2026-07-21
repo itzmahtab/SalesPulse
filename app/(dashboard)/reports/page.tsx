@@ -141,37 +141,37 @@ export default async function ReportsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-zinc-100">{t("title")}</h1>
-        <p className="text-zinc-400 text-sm">{t("subtitle")}</p>
+        <h1 className="text-2xl font-bold text-foreground">{t("title")}</h1>
+        <p className="text-muted-foreground text-sm">{t("subtitle")}</p>
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="p-4 rounded-lg bg-card border border-border">
           <div className="flex items-center gap-2 mb-2">
             <DollarSign className="h-4 w-4 text-emerald-500" />
-            <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.thisWeek")}</p>
+            <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.thisWeek")}</p>
           </div>
           <p className="text-xl font-bold text-emerald-500">৳{weekRevenue.toFixed(2)}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
+        <div className="p-4 rounded-lg bg-card border border-border">
           <div className="flex items-center gap-2 mb-2">
-            <TrendingUp className="h-4 w-4 text-indigo-500" />
-            <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.thisMonth")}</p>
+            <TrendingUp className="h-4 w-4 text-primary" />
+            <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.thisMonth")}</p>
           </div>
-          <p className="text-xl font-bold text-indigo-500">৳{monthRevenue.toFixed(2)}</p>
+          <p className="text-xl font-bold text-primary">৳{monthRevenue.toFixed(2)}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
+        <div className="p-4 rounded-lg bg-card border border-border">
           <div className="flex items-center gap-2 mb-2">
             <BarChart3 className="h-4 w-4 text-purple-500" />
-            <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.thisYear")}</p>
+            <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.thisYear")}</p>
           </div>
           <p className="text-xl font-bold text-purple-500">৳{yearRevenue.toFixed(2)}</p>
         </div>
-        <div className="p-4 rounded-lg bg-zinc-900/40 border border-zinc-800">
+        <div className="p-4 rounded-lg bg-card border border-border">
           <div className="flex items-center gap-2 mb-2">
             <ShoppingCart className="h-4 w-4 text-amber-500" />
-            <p className="text-xs text-zinc-500 uppercase font-semibold">{t("stats.totalProfit")}</p>
+            <p className="text-xs text-muted-foreground uppercase font-semibold">{t("stats.totalProfit")}</p>
           </div>
           <p className="text-xl font-bold text-amber-500">৳{totalProfit.toFixed(2)}</p>
         </div>
@@ -180,30 +180,30 @@ export default async function ReportsPage() {
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Revenue Trend */}
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/20 p-6">
-          <h2 className="text-lg font-semibold text-zinc-100 mb-4">{t("charts.revenueTrend")}</h2>
+        <div className="rounded-xl border border-border bg-card p-6">
+          <h2 className="text-lg font-semibold text-foreground mb-4">{t("charts.revenueTrend")}</h2>
           <RevenueChart data={monthlyChartData} />
         </div>
 
         {/* Sales by Category */}
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/20 p-6">
-          <h2 className="text-lg font-semibold text-zinc-100 mb-4">{t("charts.salesByCategory")}</h2>
+        <div className="rounded-xl border border-border bg-card p-6">
+          <h2 className="text-lg font-semibold text-foreground mb-4">{t("charts.salesByCategory")}</h2>
           {categoryData.length > 0 ? (
             <CategoryChart data={categoryData} />
           ) : (
-            <div className="h-64 flex items-center justify-center text-zinc-500">
+            <div className="h-64 flex items-center justify-center text-muted-foreground">
               {t("charts.noCategoryData")}
             </div>
           )}
         </div>
 
         {/* Top Products */}
-        <div className="rounded-xl border border-zinc-800 bg-zinc-900/20 p-6 lg:col-span-2">
-          <h2 className="text-lg font-semibold text-zinc-100 mb-4">{t("charts.topProducts")}</h2>
+        <div className="rounded-xl border border-border bg-card p-6 lg:col-span-2">
+          <h2 className="text-lg font-semibold text-foreground mb-4">{t("charts.topProducts")}</h2>
           {topProductsData.length > 0 ? (
             <TopProductsChart data={topProductsData} />
           ) : (
-            <div className="h-48 flex items-center justify-center text-zinc-500">
+            <div className="h-48 flex items-center justify-center text-muted-foreground">
               {t("charts.noProductData")}
             </div>
           )}

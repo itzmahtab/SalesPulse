@@ -13,7 +13,7 @@ import {
   Settings,
   Activity
 } from 'lucide-react';
-import { cn } from '@/lib/utils'; // standard shadcn utility
+import { cn } from '@/lib/utils';
 import { useTranslations } from 'next-intl';
 
 const routes = [
@@ -32,15 +32,15 @@ export default function Sidebar() {
   const dashboardT = useTranslations('dashboard.sidebar');
 
   return (
-    <aside className="hidden md:flex flex-col w-64 h-full border-r border-zinc-800 bg-zinc-900/50">
-      <div className="h-16 flex items-center px-6 border-b border-zinc-800">
-        <Link href="/dashboard" className="flex items-center gap-2 text-xl font-bold text-zinc-100 hover:text-indigo-400 transition-colors">
-          <Activity className="h-6 w-6 text-indigo-500" />
+    <aside className="hidden md:flex flex-col w-64 h-full border-r border-border bg-card/50">
+      <div className="h-16 flex items-center px-6 border-b border-border">
+        <Link href="/dashboard" className="flex items-center gap-2 text-xl font-bold text-foreground hover:text-primary transition-colors">
+          <Activity className="h-6 w-6 text-primary" />
           SalesPulse
         </Link>
       </div>
 
-      <nav className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+      <nav aria-label="Main navigation" className="flex-1 overflow-y-auto py-6 px-3 space-y-1">
         {routes.map((route) => {
           const isActive = pathname === route.path || pathname.startsWith(route.path);
           const Icon = route.icon;
@@ -49,11 +49,12 @@ export default function Sidebar() {
             <Link
               key={route.path}
               href={route.path}
+              aria-current={isActive ? 'page' : undefined}
               className={cn(
                 "flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-colors",
                 isActive 
-                  ? "bg-indigo-500/10 text-indigo-400" 
-                  : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-100"
+                  ? "bg-primary/10 text-primary" 
+                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
               )}
             >
               <Icon className="h-5 w-5" />
@@ -63,13 +64,12 @@ export default function Sidebar() {
         })}
       </nav>
 
-      {/* Placeholder for Agency Upsell / Plan Limits later */}
-      <div className="p-4 m-3 mt-auto bg-zinc-950 border border-zinc-800 rounded-lg">
-        <p className="text-xs text-zinc-400 font-medium mb-1">{dashboardT('freePlan')}</p>
-        <div className="h-1.5 w-full bg-zinc-800 rounded-full overflow-hidden">
-          <div className="h-full bg-indigo-500 w-[12%]" />
+      <div className="p-4 m-3 mt-auto bg-background border border-border rounded-lg">
+        <p className="text-xs text-muted-foreground font-medium mb-1">{dashboardT('freePlan')}</p>
+        <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+          <div className="h-full bg-primary w-[12%]" />
         </div>
-        <p className="text-[10px] text-zinc-500 mt-2">{dashboardT('salesThisMonth', { count: 12 })}</p>
+        <p className="text-[10px] text-muted-foreground mt-2">{dashboardT('salesThisMonth', { count: 12 })}</p>
       </div>
     </aside>
   );

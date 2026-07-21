@@ -32,8 +32,8 @@ export function LanguageSettings() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-lg font-semibold text-zinc-100">{t("title")}</h2>
-        <p className="text-sm text-zinc-500">{t("subtitle")}</p>
+        <h2 className="text-lg font-semibold text-foreground">{t("title")}</h2>
+        <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
       </div>
 
       <div className="space-y-2">
@@ -45,17 +45,17 @@ export function LanguageSettings() {
             className={cn(
               "w-full flex items-center justify-between px-4 py-3 rounded-lg border transition-all",
               locale === lang.code
-                ? "border-indigo-500/50 bg-indigo-500/10 text-indigo-400"
-                : "border-zinc-800 bg-zinc-900/50 text-zinc-300 hover:bg-zinc-800/50",
+                ? "border-primary/50 bg-primary/10 text-primary"
+                : "border-border bg-muted text-foreground hover:bg-accent",
               isPending && "opacity-50 cursor-not-allowed"
             )}
           >
             <div className="flex items-center gap-3">
-              <Globe className={cn("h-5 w-5", locale === lang.code ? "text-indigo-400" : "text-zinc-500")} />
+              <Globe className={cn("h-5 w-5", locale === lang.code ? "text-primary" : "text-muted-foreground")} />
               <span className="font-medium">{lang.label}</span>
             </div>
             {locale === lang.code && (
-              <Check className="h-5 w-5 text-indigo-400" />
+              <Check className="h-5 w-5 text-primary" />
             )}
           </button>
         ))}

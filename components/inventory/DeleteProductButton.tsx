@@ -37,12 +37,12 @@ export default function DeleteProductButton({ productId, productName, onSuccess 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <button className="text-xs text-zinc-500 hover:text-rose-400 transition-colors flex items-center gap-1">
+        <button className="text-xs text-muted-foreground hover:text-rose-400 transition-colors flex items-center gap-1">
           <Trash2 className="h-3.5 w-3.5" />
           {common("delete")}
         </button>
       </DialogTrigger>
-      <DialogContent className="bg-zinc-950 border-zinc-800 text-zinc-100">
+      <DialogContent className="bg-card border-border text-foreground">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-rose-400">
             <AlertTriangle className="h-5 w-5" />
@@ -50,10 +50,10 @@ export default function DeleteProductButton({ productId, productName, onSuccess 
           </DialogTitle>
         </DialogHeader>
         <div className="py-4">
-          <p className="text-zinc-300">
-            {t("confirmMessage")} <span className="font-semibold text-white">{productName}</span>?
+          <p className="text-foreground">
+            {t("confirmMessage")} <span className="font-semibold text-foreground">{productName}</span>?
           </p>
-          <p className="text-sm text-zinc-500 mt-2">
+          <p className="text-sm text-muted-foreground mt-2">
             {t("warningText")}
           </p>
         </div>
@@ -61,7 +61,7 @@ export default function DeleteProductButton({ productId, productName, onSuccess 
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="px-4 py-2 border border-zinc-700 rounded-md text-zinc-400 hover:bg-zinc-800 transition-colors"
+            className="px-4 py-2 border border-border rounded-md text-muted-foreground hover:bg-accent transition-colors"
           >
             {common("cancel")}
           </button>
@@ -69,7 +69,7 @@ export default function DeleteProductButton({ productId, productName, onSuccess 
             type="button"
             onClick={handleDelete}
             disabled={loading}
-            className="px-4 py-2 bg-rose-600 rounded-md hover:bg-rose-500 transition-colors text-white font-medium disabled:opacity-50 flex items-center gap-2"
+            className="px-4 py-2 bg-destructive rounded-md hover:bg-destructive/90 transition-colors text-white font-medium disabled:opacity-50 flex items-center gap-2"
           >
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Trash2 className="h-4 w-4" />}
             {loading ? t("deleting") : common("delete")}

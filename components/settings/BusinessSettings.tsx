@@ -35,26 +35,26 @@ export function BusinessSettings({ business }: { business: BusinessData | null }
           <Building2 className="h-8 w-8 text-emerald-400" />
         </div>
         <div>
-          <h3 className="text-lg font-semibold text-zinc-100">{t("title")}</h3>
-          <p className="text-sm text-zinc-500">{t("subtitle")}</p>
+          <h3 className="text-lg font-semibold text-foreground">{t("title")}</h3>
+          <p className="text-sm text-muted-foreground">{t("subtitle")}</p>
         </div>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="text-xs text-zinc-500 mb-1 block">{t("businessName")}</label>
+          <label className="text-xs text-muted-foreground mb-1 block">{t("businessName")}</label>
           <input
             name="name"
             defaultValue={business?.name || ""}
             required
-            className="w-full bg-zinc-900 border border-zinc-800 p-2.5 rounded-md outline-none focus:border-indigo-500"
+            className="w-full bg-background border border-input p-2.5 rounded-md outline-none focus:border-primary"
           />
         </div>
 
         <div>
-          <label className="text-xs text-zinc-500 mb-1 block">{t("urlSlug")}</label>
+          <label className="text-xs text-muted-foreground mb-1 block">{t("businessSlug")}</label>
           <div className="flex">
-            <span className="inline-flex items-center px-3 bg-zinc-800 border border-r-0 border-zinc-700 rounded-l-md text-zinc-500 text-sm">
+            <span className="inline-flex items-center px-3 bg-muted border border-r-0 border-border rounded-l-md text-muted-foreground text-sm">
               salespulse.app/
             </span>
             <input
@@ -62,24 +62,24 @@ export function BusinessSettings({ business }: { business: BusinessData | null }
               defaultValue={business?.slug || ""}
               required
               pattern="[a-z0-9-]+"
-              className="flex-1 bg-zinc-900 border border-zinc-800 p-2.5 rounded-r-md outline-none focus:border-indigo-500"
+              className="flex-1 bg-background border border-input p-2.5 rounded-r-md outline-none focus:border-primary"
             />
           </div>
-          <p className="text-xs text-zinc-600 mt-1">{t("urlWarning")}</p>
+          <p className="text-xs text-muted-foreground mt-1">{t("slugHint")}</p>
         </div>
 
         <div>
-          <label className="text-xs text-zinc-500 mb-1 block">{t("currentPlan")}</label>
+          <label className="text-xs text-muted-foreground mb-1 block">{t("currentPlan")}</label>
           <div className="flex items-center gap-3">
             <span className={`px-3 py-1.5 rounded-full text-sm font-medium ${
               business?.plan === 'agency' ? 'bg-purple-500/10 text-purple-400 border border-purple-500/20' :
-              business?.plan === 'pro' ? 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20' :
-              'bg-zinc-500/10 text-zinc-400 border border-zinc-500/20'
+              business?.plan === 'pro' ? 'bg-primary/10 text-primary border border-primary/20' :
+              'bg-muted text-muted-foreground border border-border'
             }`}>
               {business?.plan || 'free'}
             </span>
             {business?.plan === 'free' && (
-              <a href="#" className="text-xs text-indigo-400 hover:text-indigo-300">
+              <a href="#" className="text-xs text-primary hover:text-primary/80">
                 {t("upgradeToPro")}
               </a>
             )}
@@ -89,7 +89,7 @@ export function BusinessSettings({ business }: { business: BusinessData | null }
         <button
           type="submit"
           disabled={loading}
-          className="bg-indigo-600 hover:bg-indigo-500 px-6 py-2.5 rounded-md font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
+          className="bg-black text-white dark:bg-white dark:text-black hover:bg-black/90 dark:hover:bg-white/90 px-6 py-2.5 rounded-md font-medium transition-colors disabled:opacity-50 flex items-center gap-2"
         >
           {loading && <Loader2 className="h-4 w-4 animate-spin" />}
           {loading ? t("saving") : t("save")}
